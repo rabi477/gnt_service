@@ -9,16 +9,47 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+<link rel="stylesheet" href="style.css">
     <title>Welcome to GNT Service</title>
+<!-- <style>
+    #card {
+            background: #fbfbfb;
+            border-radius: 8px;
+            box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+            height: 410px;
+            margin: 6rem auto 8.1rem auto;
+            width: 385px;
+        }
+
+        #email {
+            border-radius: 30px;
+        }
+
+        body {
+            background: -webkit-linear-gradient(bottom, #bbd9ff, #dbecfe, #bbd9ff);
+            background-repeat: 1;
+        }
+
+        .form-label {
+            width: 340px;
+            height: 20px;
+            border: none;
+
+            text-align: center;
+        }
+    
+</style> -->
 </head>
 
 <body>
     <?php include("navbar.php"); ?>
 
-    <div class="container mt-5">
+    <br><br>
+    <div class="container-md mt-5 col-7 border border-5 rounded-3 pb-5 px-5">
         <form method="post">
             <div class="mb-3">
+
+                <br><br>
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
             </div>
@@ -26,15 +57,14 @@
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" name="pwd">
             </div>
-            <div class="mb-3 form-check">
+            <div class="mb-3 form-check ">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-<<<<<<< HEAD
                 <label class="form-check-label" for="exampleCheck1">Remember me</label>
-=======
-                <label class="form-check-label" for="exampleCheck1">Remember me </label>
->>>>>>> f842e205ea8165d1067ad68c62863e4d49acc5f1
             </div>
-            <button type="submit" class="btn btn-primary" name="subBtn">Login</button>
+            <div class="d-grid gap-2 col-2 mx-auto">
+                <button type="submit" class="btn btn-primary" name="subBtn">Login</button>
+            </div>
+
         </form>
     </div>
 
