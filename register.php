@@ -17,7 +17,7 @@
   <?php include("navbar.php"); ?>
 
 
-  <div id="card" class="container mt-5 col-9 border border-5 rounded-5 pb-5 px-auto pt-5 br-5 ">
+  <div id="card" class="container my-5 col-9 border border-5 rounded-5 pb-5 px-auto pt-5 br-5 ">
     <form class="row g-3">
       <div class="mb-3">
         <label class="form-label">Full name</label>
