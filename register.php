@@ -25,19 +25,19 @@
       </div>
 
       <div>
-        <label for="gender"> Gender</label>
-        <span class="form-check">
+        <label for="gender"> Gender: </label>
+        <div class="form-check">
           <input class="form-check-input" type="radio" name="gender" value="male" id="flexRadioDefault1" checked>
           <label class="form-check-label" for="flexRadioDefault1">
             Male
           </label>
-        </span>
-        <span class="form-check">
+        </div>
+        <div class="form-check">
           <input class="form-check-input" type="radio" name="gender" value="female" id="flexRadioDefault2">
           <label class="form-check-label" for="flexRadioDefault2">
             Female
           </label>
-        </span>
+        </div>
       </div>
 
 
