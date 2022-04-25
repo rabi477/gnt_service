@@ -17,40 +17,39 @@
   <?php include("navbar.php"); ?>
 
 
-  <div id="card" class="container my-5 col-9 border border-5 rounded-5 pb-5 px-auto pt-5 br-5 ">
+  <div id="card" class="container my-5 col-9 border border-5 rounded-5 pb-5 px-auto pt-5 ">
     <form class="row g-3">
       <div class="mb-3">
         <label class="form-label">Full name</label>
-        <input type="text" class="form-control" value="" required>
+        <input type="text" class="form-control" name="uname" required>
+      </div>
 
-        <div>
-        <label for="Reguster as"> Gender</label>
+      <div>
+        <label for="gender"> Gender</label>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <input class="form-check-input" type="radio" name="gender" value="male" id="flexRadioDefault1" checked>
           <label class="form-check-label" for="flexRadioDefault1">
             Male
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+          <input class="form-check-input" type="radio" name="gender" value="female" id="flexRadioDefault2">
           <label class="form-check-label" for="flexRadioDefault2">
             Female
           </label>
         </div>
       </div>
 
-      </div>
+
       <div class="mb-3">
         <label class="form-label">Email</label>
-        <input type="text" class="form-control" value="" required>
+        <input type="text" class="form-control" name="email" required>
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Date of birth</label>
-        <input type="date" class="form-control" value="" required>
+        <label class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" name="dob" required>
       </div>
-
-
 
 
       <div class="mb-3">
@@ -58,25 +57,27 @@
         <input type="password" class="form-control" id="exampleInputPassword1" name="pwd">
       </div>
 
-      <div class="mb-2">
+      <div class="mb-3">
         <label for="validationServer05" class="form-label">Aadhaar number</label>
-        <input type="text" class="form-control" id="validationServer05" required>
+        <input type="text" class="form-control" id="validationServer05" name="adn" required>
       </div>
+
       <div>
         <label for="Reguster as"> Register as</label>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <input class="form-check-input" type="radio" name="utype" value="customer" id="flexRadioDefault1">
           <label class="form-check-label" for="flexRadioDefault1">
             Customer
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+          <input class="form-check-input" type="radio" name="utype" value="service provider" id="flexRadioDefault2" checked>
           <label class="form-check-label" for="flexRadioDefault2">
             Service provider
           </label>
         </div>
       </div>
+
       <div class="col-12">
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
@@ -96,12 +97,6 @@
   </div>
   </form>
   </div>
-
-
-
-
-
-
 
 
 
