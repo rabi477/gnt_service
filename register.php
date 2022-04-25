@@ -23,12 +23,34 @@
         <label class="form-label">Full name</label>
         <input type="text" class="form-control" value="" required>
 
+        <div>
+        <label for="Reguster as"> Gender</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Male
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+          <label class="form-check-label" for="flexRadioDefault2">
+            Female
+          </label>
+        </div>
+      </div>
 
       </div>
       <div class="mb-3">
         <label class="form-label">Email</label>
         <input type="text" class="form-control" value="" required>
       </div>
+
+      <div class="mb-3">
+        <label class="form-label">Date of birth</label>
+        <input type="date" class="form-control" value="" required>
+      </div>
+
+
 
 
       <div class="mb-3">
