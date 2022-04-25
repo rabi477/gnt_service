@@ -9,7 +9,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Welcome to GNT Service</title>
 
 </head>
@@ -39,6 +39,35 @@
             </div>
 
         </form>
+
+        <?php
+
+        extract($_POST);
+
+        if (isset($subBtn)) {
+
+            $conn = mysqli_connect("localhost", "root", "", "gnt_service");
+
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            $qry = "select * from user where email='$email' and pwd='$pwd';";
+
+
+            $res = $conn->query($qry);
+
+            if ($res->num_rows > 0) {
+                echo "logged in successfully";
+            } else {
+                echo "<p style='color:red'> Incorrect email or password </p>";
+            }
+        }
+
+        
+
+        ?>
+
     </div>
 
 
@@ -48,33 +77,3 @@
 </body>
 
 </html>
-
-<?php
-
-extract($_POST);
-
-if (isset($subBtn)) {
-
-    $conn = mysqli_connect("localhost", "root", "", "gnt_service");
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $qry = "select * from user where email='$email' and pwd='$pwd';";
-
-
-    $res = $conn->query($qry);
-
-    if ($res->num_rows > 0) {
-        echo "logged in successfully";
-    } else {
-        echo "login failed";
-    }
-}
-
-
-
-
-
-?>
