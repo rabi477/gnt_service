@@ -98,7 +98,10 @@
       extract($_POST);
       if(isset($subBtn)){
         $conn = mysqli_connect("localhost", "root", "", "gnt_service");
-        $qry = "insert into gnt_service values();";
+        $qry = "insert into gnt_service(name,gender,email,dob,pwd,aadhaar,utype) values('$uname','$gender','$email','$dob','$pwd',$adn,'$utype');";
+        if($conn->query($sql)){
+          echo "Registered Successfully! ";
+        }
 
       }
 
