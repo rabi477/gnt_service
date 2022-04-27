@@ -92,8 +92,9 @@
       <div class="d-grid gap-2 col-6 mx-auto ">
         <button class="btn btn-primary" type="submit" name="subBtn" >Register</button>
       </div>
+    </form>
 
-      <?php
+    <?php
       
       extract($_POST);
       if(isset($subBtn)){
@@ -109,7 +110,6 @@
       
       ?>
 
-    </form>
   </div>
   
 
