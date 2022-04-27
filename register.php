@@ -20,7 +20,8 @@
 
     extract($_POST);
     if (isset($subBtn)) {
-      $conn = mysqli_connect("localhost", "root", "", "gnt_service");
+      include_once("db_conn.php");
+      
       $qry = "insert into user(name,gender,email,dob,pwd,aadhaar,utype) values('$uname','$gender','$email','$dob','$pwd',$adn,'$utype');";
 
       if ($conn->query($qry)) {
@@ -30,7 +31,7 @@
           Activation Link Send to your email address ! 
         </div>
       </div>";
-        $msg = "http://localhost/gnt_service/verify.php?".base64_encode($email);
+        $msg = "http://".$_SERVER["SERVER_NAME"]."/gnt_service/verify.php?".base64_encode($email);
         send_link($email,"GNT_Service",$msg,"Verify your Account with GNT Service");
       }
     }
@@ -59,10 +60,7 @@
       curl_close($curl);
     }
 
-
-
     ?>
-
 
   <div id="card" class="container my-5 col-9 border border-5 rounded-5 pb-5 px-auto pt-5 ">
     <form class="row g-3" method="POST">
