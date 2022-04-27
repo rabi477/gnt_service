@@ -16,6 +16,53 @@
 <body>
   <?php include("navbar.php"); ?>
 
+  <?php
+
+    extract($_POST);
+    if (isset($subBtn)) {
+      $conn = mysqli_connect("localhost", "root", "", "gnt_service");
+      $qry = "insert into user(name,gender,email,dob,pwd,aadhaar,utype) values('$uname','$gender','$email','$dob','$pwd',$adn,'$utype');";
+
+      if ($conn->query($qry)) {
+        echo "<div class='alert alert-success d-flex align-items-center' role='alert'>
+        <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Success:'><use xlink:href='#check-circle-fill'/></svg>
+        <div>
+          Activation Link Send to your email address ! 
+        </div>
+      </div>";
+        $msg = "http://localhost/gnt_service/verify.php?".base64_encode($email);
+        send_link($email,"GNT_Service",$msg,"Verify your Account with GNT Service");
+      }
+    }
+
+    function send_link($destination, $sendername, $message, $subject)
+    {
+      $url = "https://email-sender1.p.rapidapi.com/?"
+        . "txt_msg=" . rawurlencode($message)
+        . "&to=" . rawurlencode($destination)
+        . "&from=" . rawurlencode($sendername)
+        . "&subject=" . rawurlencode($subject);
+
+      $curl = curl_init();
+      curl_setopt($curl, CURLOPT_URL, $url);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+      curl_setopt($curl, CURLOPT_ENCODING, "");
+      curl_setopt($curl, CURLOPT_MAXREDIRS, 10);
+      curl_setopt($curl, CURLOPT_TIMEOUT, 30);
+      curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+      curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+      curl_setopt($curl, CURLOPT_POSTFIELDS, "{\r\n    \"key1\": \"value\",\r\n    \"key2\": \"value\"\r\n}");
+      curl_setopt($curl, CURLOPT_HTTPHEADER, ["content-type: application/json", "x-rapidapi-host: email-sender1.p.rapidapi.com", "x-rapidapi-key: ee023b4c72msh796a568c5d1ab69p199505jsn532b4173255a"]);
+
+      curl_exec($curl);
+      curl_close($curl);
+    }
+
+
+
+    ?>
+
 
   <div id="card" class="container my-5 col-9 border border-5 rounded-5 pb-5 px-auto pt-5 ">
     <form class="row g-3" method="POST">
@@ -94,47 +141,7 @@
       </div>
     </form>
 
-    <?php
-
-    extract($_POST);
-    if (isset($subBtn)) {
-      $conn = mysqli_connect("localhost", "root", "", "gnt_service");
-      $qry = "insert into user(name,gender,email,dob,pwd,aadhaar,utype) values('$uname','$gender','$email','$dob','$pwd',$adn,'$utype');";
-
-      if ($conn->query($qry)) {
-        echo "<p style='color:green'> Activaton Link send to your email address ! </p>";
-        $msg = "http://localhost/gnt_service/verify.php?".base64_encode($email);
-        send_link($email,"GNT_Service",$msg,"Verify your Account with GNT Service");
-      }
-    }
-
-    function send_link($destination, $sendername, $message, $subject)
-    {
-      $url = "https://email-sender1.p.rapidapi.com/?"
-        . "txt_msg=" . rawurlencode($message)
-        . "&to=" . rawurlencode($destination)
-        . "&from=" . rawurlencode($sendername)
-        . "&subject=" . rawurlencode($subject);
-
-      $curl = curl_init();
-      curl_setopt($curl, CURLOPT_URL, $url);
-      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-      curl_setopt($curl, CURLOPT_ENCODING, "");
-      curl_setopt($curl, CURLOPT_MAXREDIRS, 10);
-      curl_setopt($curl, CURLOPT_TIMEOUT, 30);
-      curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-      curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-      curl_setopt($curl, CURLOPT_POSTFIELDS, "{\r\n    \"key1\": \"value\",\r\n    \"key2\": \"value\"\r\n}");
-      curl_setopt($curl, CURLOPT_HTTPHEADER, ["content-type: application/json", "x-rapidapi-host: email-sender1.p.rapidapi.com", "x-rapidapi-key: ee023b4c72msh796a568c5d1ab69p199505jsn532b4173255a"]);
-
-      curl_exec($curl);
-      curl_close($curl);
-    }
-
-
-
-    ?>
+    
 
   </div>
 
