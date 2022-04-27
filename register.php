@@ -100,8 +100,6 @@
         $conn = mysqli_connect("localhost", "root", "", "gnt_service");
         $qry = "insert into user(name,gender,email,dob,pwd,aadhaar,utype) values('$uname','$gender','$email','$dob','$pwd',$adn,'$utype');";
         
-        echo $uname, $gender, $email, $dob , $pwd ,$adn, $utype;
-        
         if($conn->query($qry)){
           echo "Registered Successfully! ";
         }
