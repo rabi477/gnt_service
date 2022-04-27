@@ -18,7 +18,7 @@
 
 
   <div id="card" class="container my-5 col-9 border border-5 rounded-5 pb-5 px-auto pt-5 ">
-    <form class="row g-3">
+    <form class="row g-3" method="POST">
       <div class="mb-3">
         <label class="form-label">Full name</label>
         <input type="text" class="form-control" name="uname" required>
@@ -90,13 +90,24 @@
         </div>
       </div>
       <div class="d-grid gap-2 col-6 mx-auto ">
-        <button class="btn btn-primary" type="submit">Register</button>
+        <button class="btn btn-primary" type="submit" name="subBtn" >Register</button>
       </div>
+
+      <?php
+      
+      extract($_POST);
+      if(isset($subBtn)){
+        $conn = mysqli_connect("localhost", "root", "", "gnt_service");
+        $qry = "insert into gnt_service values();";
+
+      }
+
+      
+      ?>
+
+    </form>
   </div>
-  </form>
-  </div>
-  </form>
-  </div>
+  
 
 
 
