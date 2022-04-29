@@ -48,7 +48,7 @@
 
         if (isset($subBtn)) {
 
-            $conn = mysqli_connect("localhost", "root", "", "gnt_service");
+            include_once("db_conn.php");
 
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
