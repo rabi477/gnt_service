@@ -9,7 +9,7 @@
     if (isset($subBtn)) {
       include_once("db_conn.php");
       
-        $qry = "select * from user where email=$email";
+        $qry = "select * from user where email='$email'";
         $res = $conn->query($qry);
         
 
@@ -25,10 +25,10 @@
       }
       else
       {
-        echo "<div class='alert alert-warning d-flex align-items-center' role='alert'>
+        echo "<div class='alert alert-success d-flex align-items-center' role='alert'>
         <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Success:'><use xlink:href='#check-circle-fill'/></svg>
         <div>
-          Please Register yourself with us ! 
+          Password Reset Link Send to your email address ! 
         </div>
       </div>";
       }

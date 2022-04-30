@@ -2,7 +2,7 @@
     <?php include("navbar.php"); ?>
 
     <br><br>
-    <div class="container-md mt-5 col-8 border border-5 rounded-3 pb-5 px-5">
+    <div class="container-md my-5 col-8 border border-5 rounded-3 pb-5 px-3">
         <form method="post">
             <div class="mb-3">
 
