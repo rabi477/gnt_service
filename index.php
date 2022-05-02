@@ -15,7 +15,7 @@
                 <input type="password" class="form-control" id="exampleInputPassword1" name="pwd">
             </div>
             <div class="mb-3 form-check ">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <input type="checkbox" class="form-check-input" id="rme">
                 <label class="form-check-label" for="exampleCheck1">Remember me</label>
             </div>
             <div class="d-grid gap-2 col-2 mx-auto">
@@ -43,18 +43,41 @@
 
             $res = $conn->query($qry);
 
+
             if ($res->num_rows > 0) {
-                echo "logged in successfully";
+                $a = mysqli_fetch_assoc($res);
+
+                if ($a["verification"] == 1) {
+                    session_start();
+
+                    $_SESSION["name"] = $a["name"];
+                    $_SESSION["email"] = $a["email"];
+                    $_SESSION["utype"] = $a["utype"];
+
+
+                    if ($a["utype"] == "customer") {
+                        header("location:cdash.php");
+                    } else if ($a["utype"] == "service provider") {
+                        header("location:sdash.php");
+                    }
+                }else {
+                    echo "<p style='color:green'> <br>Verification Link Send to your email, please activate your account </p>";
+                    include_once("send_email.php");
+                    $msg = "http://".$_SERVER["SERVER_NAME"]."/gnt_service/verify.php?".base64_encode($email);
+                    send_link($email,"GNT_Service",$msg,"Verify your Account with GNT Service");
+                }
+
+
             } else {
-                echo "<p style='color:red'> Incorrect email or password </p>";
+                echo "<p style='color:red'> <br>Incorrect email or password </p>";
             }
         }
 
-        
+
 
         ?>
 
     </div>
 
 
-<?php include_once("footer.php") ?>
+    <?php include_once("footer.php") ?>
