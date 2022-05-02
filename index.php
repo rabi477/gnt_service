@@ -24,7 +24,10 @@
 
         </form>
 
-        <a href="forgotpass.php">Forgot Password?</a>
+        <div class="mt-3" >
+            <a href="forgotpass.php" >Forgot Password?</a>
+        </div>
+
 
         <?php
 

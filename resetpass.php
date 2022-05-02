@@ -15,12 +15,14 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            $qry = "update user set pwd='$pwd' where email=$em ";
+            $qry = "update user set pwd='$pwd' where email='$em';";
 
             if ($conn->query($qry)) {
                 echo "<p style='color:green'> Password Changed </p>";
+                header("location:index.php");
             } else {
                 echo "<p style='color:red'> Error Occured </p>";
+                header("location:index.php");
             }
         }
 
