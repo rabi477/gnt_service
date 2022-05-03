@@ -8,21 +8,35 @@
     extract($_POST);
     if (isset($subBtn)) {
       include_once("db_conn.php");
-      
-      $qry = "insert into user(name,gender,email,dob,pwd,aadhaar,utype) values('$uname','$gender','$email','$dob','$pwd',$adn,'$utype');";
 
-      if ($conn->query($qry)) {
-        echo "<div class='alert alert-success d-flex align-items-center' role='alert'>
+      $chkqry = "select * from user where email='$email' or aadhaar=$adn;";
+      $res  = $conn->query($chkqry);
+
+      if(!$res->num_rows>0){
+        $qry = "insert into user(name,gender,email,dob,pwd,aadhaar,utype) values('$uname','$gender','$email','$dob','$pwd',$adn,'$utype');";
+
+        if ($conn->query($qry)) {
+          echo "<div class='alert alert-success d-flex align-items-center' role='alert'>
+          <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Success:'><use xlink:href='#check-circle-fill'/></svg>
+          <div>
+            Activation Link Send to your email address ! 
+          </div>
+        </div>";
+          $msg = "http://".$_SERVER["SERVER_NAME"]."/gnt_service/verify.php?".base64_encode($email);
+          send_link($email,"GNT_Service",$msg,"Verify your Account with GNT Service");
+        }
+      }
+      else{
+        echo "<div class='alert alert-warning d-flex align-items-center' role='alert'>
         <svg class='bi flex-shrink-0 me-2' width='24' height='24' role='img' aria-label='Success:'><use xlink:href='#check-circle-fill'/></svg>
         <div>
-          Activation Link Send to your email address ! 
+          Email or Aadhaar already registered !
         </div>
       </div>";
-        $msg = "http://".$_SERVER["SERVER_NAME"]."/gnt_service/verify.php?".base64_encode($email);
-        send_link($email,"GNT_Service",$msg,"Verify your Account with GNT Service");
       }
-    }
+      
 
+    }
 
 
     ?>
@@ -50,7 +64,6 @@
         </div>
       </div>
 
-
       <div class="mb-3">
         <label class="form-label">Email</label>
         <input type="text" class="form-control" name="email" required>
@@ -61,15 +74,14 @@
         <input type="date" class="form-control" name="dob" required>
       </div>
 
-
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" name="pwd">
+        <input type="password" minlength="8" class="form-control" id="exampleInputPassword1" name="pwd">
       </div>
 
       <div class="mb-3">
         <label for="validationServer05" class="form-label">Aadhaar number</label>
-        <input type="number" minlength="12" class="form-control" id="validationServer05" name="adn"  required>
+        <input type="number" class="form-control" id="validationServer05" name="adn"  required>
       </div>
 
       <div>
@@ -105,10 +117,6 @@
     </form>
 
     
-
   </div>
-
-
-
 
   <?php include_once("footer.php") ?>

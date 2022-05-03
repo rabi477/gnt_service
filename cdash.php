@@ -15,4 +15,29 @@
 <?php include_once("header.php") ?>
 <?php include_once("cnav.php") ?>
 
+<div class="container">
+<?php
+
+include_once("db_conn.php");
+
+$spqry = "select name,s_type from user,service where utype='service provider' and user.id=service.id;";
+$spres = $conn->query($spqry);
+
+while($val = $spres->fetch_assoc()){
+    $snm = $val['name'];
+    $stp = $val['s_type'];
+    echo "<div class='card text-center' style='width: 18rem;'>
+    <img src='./gnt_img/avatar.png' class='card-img-top' width='128' alt='avatar'>
+    <div class='card-body'>
+      <h5 class='card-title'>$snm</h5>
+      <p class='card-text'>$stp</p>
+      <a href='#' class='btn btn-primary mx-auto'> Message </a>
+    </div>
+  </div>";
+}
+
+?>
+</div>
+
+
 <?php include_once("footer.php") ?>
