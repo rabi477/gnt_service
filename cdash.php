@@ -16,7 +16,7 @@ if ($_SESSION["utype"] != "customer") {
 <?php include_once("cnav.php") ?>
 
 <div class="container">
-<div class="row">
+<div class="row justify-content-around">
         <?php
 
         include_once("db_conn.php");
