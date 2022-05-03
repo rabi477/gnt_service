@@ -69,7 +69,7 @@
 
       <div class="mb-3">
         <label for="validationServer05" class="form-label">Aadhaar number</label>
-        <input type="number" class="form-control" id="validationServer05" name="adn" min="0" required>
+        <input type="number" minlength="12" class="form-control" id="validationServer05" name="adn"  required>
       </div>
 
       <div>
