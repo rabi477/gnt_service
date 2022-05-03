@@ -56,6 +56,7 @@
                     $_SESSION["name"] = $a["name"];
                     $_SESSION["email"] = $a["email"];
                     $_SESSION["utype"] = $a["utype"];
+                    $_SESSION["id"] = $a["id"];
 
 
                     if ($a["utype"] == "customer") {
