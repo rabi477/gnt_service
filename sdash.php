@@ -29,6 +29,7 @@
         <option value="Painter">Painter</option>
         <option value="Electrician">Electrician</option>
         <option value="Carpenter">Carpenter</option>
+        <option value="Gardener">Gardener</option>
       </select>
       </div>
       <div class="modal-footer">
