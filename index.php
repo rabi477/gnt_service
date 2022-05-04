@@ -11,8 +11,11 @@
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" name="pwd">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="password" name="pwd">
+                    <span class="input-group-text"><i class="bi bi-eye-slash-fill" id="togglePassword" style="cursor: pointer;"></i></span>
+                </div>
             </div>
             <div class="mb-3 form-check ">
                 <input type="checkbox" class="form-check-input" id="rme">
@@ -24,14 +27,14 @@
 
         </form>
 
-        <div class="mt-3" >
-            <a href="forgotpass.php" >Forgot Password?</a>
+        <div class="mt-3">
+            <a href="forgotpass.php">Forgot Password?</a>
         </div>
 
 
         <?php
-        
-        
+
+
 
         extract($_POST);
 
@@ -66,14 +69,12 @@
                     } else if ($a["utype"] == "service provider") {
                         header("location:sdash.php");
                     }
-                }else {
+                } else {
                     echo "<p style='color:green'> <br>Verification Link Send to your email, please activate your account </p>";
                     include_once("send_email.php");
-                    $msg = "http://".$_SERVER["SERVER_NAME"]."/gnt_service/verify.php?".base64_encode($email);
-                    send_link($email,"GNT_Service",$msg,"Verify your Account with GNT Service");
+                    $msg = "http://" . $_SERVER["SERVER_NAME"] . "/gnt_service/verify.php?" . base64_encode($email);
+                    send_link($email, "GNT_Service", $msg, "Verify your Account with GNT Service");
                 }
-
-
             } else {
                 echo "<p style='color:red'> <br>Incorrect email or password </p>";
             }
@@ -84,6 +85,7 @@
         ?>
 
     </div>
+
 
 
     <?php include_once("footer.php") ?>
