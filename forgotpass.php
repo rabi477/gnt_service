@@ -39,7 +39,7 @@
     ?>
 
     <br><br>
-    <div class="container-md mt-5 col-8 border border-5 rounded-3 pb-5 px-5">
+    <div class="container-md mt-5 col-8 border border-5 rounded-3 pb-5 px-3">
         <form method="post">
             <div class="mb-3">
 
@@ -48,12 +48,15 @@
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
             </div>
   
-            <div class="d-grid gap-2 col-2 mx-auto">
+            <div class="d-grid gap-2 col-md-3 mx-auto">
                 <button type="submit" class="btn btn-primary" name="subBtn">Forgot Password</button>
             </div>
 
         </form>
 
+        <div class="mt-3">
+          <a href="index.php"> Login ? </a>
+        </div>
 
     </div>
 

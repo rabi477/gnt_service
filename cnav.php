@@ -27,7 +27,7 @@
   </div>
 </nav>
 
-<!-- Modal -->
+<!-- Modal search -->
 <div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -67,6 +67,7 @@
 extract($_POST);
 
 if (isset($loutbtn)) {
+  setcookie("cred", null, -1, '/');
   session_unset();
   session_destroy();
   header("location:index.php");

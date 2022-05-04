@@ -1,3 +1,40 @@
+    <?php
+    if (isset($_COOKIE['cred'])) {
+        $email = explode(':', $_COOKIE['cred'])[0];
+        $pwd = explode(':', $_COOKIE['cred'])[1];
+
+        include_once("db_conn.php");
+
+        if ($conn->connect_error) {
+            die("Connection failed");
+        }
+        $qry = "select * from user where email='$email' and pwd='$pwd';";
+        $res = $conn->query($qry);
+
+        $a = mysqli_fetch_assoc($res);
+
+        if ($a["verification"] == 1) {
+            session_start();
+
+            $_SESSION["name"] = $a["name"];
+            $_SESSION["email"] = $a["email"];
+            $_SESSION["utype"] = $a["utype"];
+            $_SESSION["id"] = $a["id"];
+
+            if (isset($rme)) {
+                setcookie("cred", $email . ":" . $pwd, time() + 86400, '/');
+            }
+
+
+            if ($a["utype"] == "customer") {
+                header("location:cdash.php");
+            } else if ($a["utype"] == "service provider") {
+                header("location:sdash.php");
+            }
+        }
+    }
+    ?>
+
     <?php include_once("header.php") ?>
     <?php include("navbar.php"); ?>
 
@@ -18,7 +55,7 @@
                 </div>
             </div>
             <div class="mb-3 form-check ">
-                <input type="checkbox" class="form-check-input" id="rme">
+                <input type="checkbox" class="form-check-input" name="rme">
                 <label class="form-check-label" for="exampleCheck1">Remember me</label>
             </div>
             <div class="d-grid gap-2 col-2 mx-auto">
@@ -28,7 +65,12 @@
         </form>
 
         <div class="mt-3">
-            <a href="forgotpass.php">Forgot Password?</a>
+            <div>
+                <a href="forgotpass.php">Forgot Password?</a>
+            </div>
+            <div class="mt-3">
+                <a href="index.php">New User?</a>
+            </div>
         </div>
 
 
@@ -43,7 +85,7 @@
             include_once("db_conn.php");
 
             if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
+                die("Connection failed");
             }
 
             $qry = "select * from user where email='$email' and pwd='$pwd';";
@@ -62,6 +104,10 @@
                     $_SESSION["email"] = $a["email"];
                     $_SESSION["utype"] = $a["utype"];
                     $_SESSION["id"] = $a["id"];
+
+                    if (isset($rme)) {
+                        setcookie("cred", "$email:$pwd", time() + 86400, '/');
+                    }
 
 
                     if ($a["utype"] == "customer") {
@@ -86,6 +132,20 @@
 
     </div>
 
+    <script>
+        const togglePassword = document.querySelector("#togglePassword");
+        const password = document.querySelector("#password");
+
+        togglePassword.addEventListener("click", function() {
+
+            // toggle the type attribute
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            // toggle the eye icon
+            this.classList.toggle('bi-eye-fill');
+            this.classList.toggle('bi-eye-slash-fill');
+        });
+    </script>
 
 
-    <?php include_once("footer.php") ?>
+    <?php include_once("footer.php"); ?>

@@ -6,7 +6,7 @@
     </button>
     </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="nav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ps-3" id="nav">
         <li class="nav-item">
           <a class="nav-link <?php if(explode('/',$_SERVER['SCRIPT_NAME'])[2]=='index.php') echo 'active'; ?>" aria-current="page"  href="index.php">Login</a>
         </li>
