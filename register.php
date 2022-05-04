@@ -76,7 +76,7 @@
 
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" minlength="8" class="form-control" id="exampleInputPassword1" name="pwd">
+        <input type="password" minlength="8" maxlength="16" class="form-control" id="exampleInputPassword1" name="pwd">
       </div>
 
       <div class="mb-3">
