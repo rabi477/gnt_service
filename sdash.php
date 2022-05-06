@@ -46,6 +46,7 @@ include_once("snav.php");
             <option value="Electrician">Electrician</option>
             <option value="Carpenter">Carpenter</option>
             <option value="Gardener">Gardener</option>
+            <option value="Plumber">Plumber</option>
           </select>
         </div>
         <div class="modal-footer">
