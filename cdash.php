@@ -1,6 +1,6 @@
 <?php session_start();
 
-if (!isset($_SESSION["utype"])) {
+if (!isset($_SESSION["utype"]) || $_SESSION["utype"]!="customer") {
     header("location:index.php");
 }
 
@@ -27,7 +27,6 @@ include_once("cnav.php");
                 </button>
             </div>
         </div>
-
     </div>
 </div>
 
