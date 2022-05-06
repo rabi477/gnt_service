@@ -69,7 +69,7 @@
                 <a href="forgotpass.php">Forgot Password?</a>
             </div>
             <div class="mt-3">
-                <a href="index.php">New User?</a>
+                <a href="register.php">New User?</a>
             </div>
         </div>
 

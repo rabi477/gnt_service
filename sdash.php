@@ -1,17 +1,15 @@
-<?php session_start() ?>
+<?php session_start(); ?>
 
 <?php 
   if(!isset($_SESSION["utype"])){
           header("location:index.php");
   }
 
-  if($_SESSION["utype"]!="service provider"){
-        header("location:cdash.php");
-  }
+  include_once("header.php");
+  include_once("snav.php");
+
 ?>
 
-<?php include_once("header.php") ?>
-<?php include_once("snav.php") ?>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
