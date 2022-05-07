@@ -55,7 +55,7 @@ include_once("cnav.php");
             <div class='card-body'>
             <h5 class='card-title'>$snm</h5>
             <p class='card-text'>$stp</p>
-            <a href='#' class='btn btn-primary mx-auto' data-bs-toggle='offcanvas' onclick='loadMsg($sid,"$snm")' data-bs-target='#cmsg' aria-controls='offcanvasRight' > Message </a>
+            <a href='#' class='btn btn-primary mx-auto cmbtn' data-bs-toggle='offcanvas' onclick='loadMsg($sid,"$snm")' data-bs-target='#cmsg' aria-controls='offcanvasRight' > Message </a>
             </div>
             </div>
             idfr;
@@ -110,6 +110,10 @@ include_once("cnav.php");
         if(e.key === 'Enter'){
             sendMsg();
         }
+    });
+
+    document.querySelector('.cmbtn').addEventListener('click',()=>{
+        ldmsgintvrl = setInterval(loadMsg,2000, sid2,snm2);
     });
 
 </script>
