@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 
 <?php
+
 if (!isset($_SESSION["utype"]) || $_SESSION["utype"] != "service provider") {
   header("location:index.php");
 }
@@ -17,8 +18,32 @@ include_once("snav.php");
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-      <div class="btn-group-vertical" >
-        
+      <div class="overflow-auto" >
+      <table class="table table-hover">
+      <tbody>
+        <?php 
+
+        include_once("db_conn.php");
+        $sid = $_SESSION['id'];
+        $qry = "select name from user where id=(select cid from chat where sid=$sid);";
+
+        $res = $conn->query($qry);
+
+        while($val = $res->fetch_assoc()){
+          $name = $val['name'];
+
+          $str=<<<idfr
+          <tr style="cursor:pointer;" >
+          <td class="w-25" ><img src="./gnt_img/avatar.png" alt="avatar" height="50px" width="50px" style="border-radius:50%"></td>
+          <td class="fw-bold w-75 pt-4">$name</td>
+          </tr>
+          idfr; 
+
+          echo $str;
+        }
+        ?>
+      </tbody>
+      </table>
       </div>
   </div>
 </div>
