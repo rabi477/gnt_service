@@ -5,7 +5,7 @@ include_once("db_conn.php");
 $sid = $_GET['sid'];
 $cid = $_GET['cid'];
 
-$qry = "select msg from chat where sid=$sid and cid=$cid";
+$qry = "select msg from chat where (sid=$sid and cid=$cid) or (sid=$cid and cid=$sid);";
 
 $res = $conn->query($qry);
 

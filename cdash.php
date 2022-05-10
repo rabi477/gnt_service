@@ -113,7 +113,7 @@ include_once("cnav.php");
     });
 
     document.querySelector('.cmbtn').addEventListener('click',()=>{
-        ldmsgintvrl = setInterval(loadMsg,2000, sid2,snm2);
+        ldmsgintvrl = setInterval(loadMsg,1000, sid2,snm2);
     });
 
 </script>

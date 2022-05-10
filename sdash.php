@@ -14,37 +14,67 @@ include_once("snav.php");
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel">Client</h5>
+    <h5>Client</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
-      <div class="overflow-auto" >
+    <div class="overflow-auto">
       <table class="table table-hover">
-      <tbody>
-        <?php 
+        <tbody>
+          <?php
 
-        include_once("db_conn.php");
-        $sid = $_SESSION['id'];
-        $qry = "select name from user where id=(select cid from chat where sid=$sid);";
+          include_once("db_conn.php");
+          $sid = $_SESSION['id'];
+          $qry = "select DISTINCT(user.id),name from user,chat WHERE user.id=chat.cid and sid=$sid;";
 
-        $res = $conn->query($qry);
+          $res = $conn->query($qry);
 
-        while($val = $res->fetch_assoc()){
-          $name = $val['name'];
+          while ($val = $res->fetch_assoc()) {
+            $cnm = $val['name'];
+            $cid = $val['id'];
 
-          $str=<<<idfr
-          <tr style="cursor:pointer;" >
-          <td class="w-25" ><img src="./gnt_img/avatar.png" alt="avatar" height="50px" width="50px" style="border-radius:50%"></td>
-          <td class="fw-bold w-75 pt-4">$name</td>
-          </tr>
-          idfr; 
+            $str = <<<idfr
+            <tr style="cursor:pointer;" class="cmbtn" data-bs-toggle="offcanvas" data-bs-target="#clientChatBox" aria-controls="offcanvasRight" onclick='loadMsg($cid,"$cnm")' >
+            <td class="w-25" ><img src="./gnt_img/avatar.png" alt="avatar" height="50px" width="50px" style="border-radius:50%"></td>
+            <td class="fw-bold w-75 pt-4">$cnm</td>
+            </tr>
+            idfr;
 
-          echo $str;
-        }
-        ?>
-      </tbody>
+            echo $str;
+          }
+          ?>
+        </tbody>
       </table>
+    </div>
+  </div>
+</div>
+
+<!-- client chat box -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="clientChatBox" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <span data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="color: grey;" onclick="clmsgintvrl()" >
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+      </svg>
+    </span>
+    <h5 id="offcanvasRightLabel">Messages</h5>
+    <button type="button" class="btn-close text-reset" onclick="clmsgintvrl()" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="position-relative h-100">
+      <div id="msg" class="d-flex flex-column overflow-auto text-wrap" style="height:88% ;">
+
       </div>
+      <hr>
+      <div class="d-flex position-absolute bottom-0 w-100">
+        <input type="text" class="form-control" id="msgval" placeholder="Type Message Here ...">
+        <button type="button" onclick="sendMsg()" class="btn btn-primary mx-2 px-3 ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+            <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -84,7 +114,58 @@ include_once("snav.php");
       document.getElementById('prcdbtn').disabled = false;
     }
   }
+
+    var cid2, cnm2;
+    var msgwin = document.getElementById('msg');
+    var ldmsgintvrl;
+
+    function sendMsg() {
+            var msgText = document.getElementById('msgval').value;
+            var xhttp = new XMLHttpRequest();
+            document.getElementById('msgval').value="";
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("msg").innerHTML = this.responseText;
+                    msgwin.scrollTop = msgwin.scrollHeight;
+                }
+            };
+            xhttp.open("GET", "setmsg.php?cid=" + cid2 + "&sid=<?php echo $_SESSION['id']; ?>&msgText=" + msgText, true);
+            xhttp.send();
+    }
+
+    function loadMsg(cid, cnm) {
+        cid2 = cid;
+        cnm2 = cnm;
+        document.getElementById('offcanvasRightLabel').innerText = cnm;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("msg").innerHTML = this.responseText;
+                msgwin.scrollTop = msgwin.scrollHeight;
+            }
+        };
+        xhttp.open("GET", "getmsg.php?cid="+cid+"&sid=<?php echo $_SESSION['id']; ?>", true);
+        xhttp.send();
+    }
+
+     
+    function clmsgintvrl(){
+        clearInterval(ldmsgintvrl);
+    }
+
+    document.querySelector('#msgval').addEventListener('keypress',(e)=>{
+        if(e.key === 'Enter'){
+            sendMsg();
+        }
+    });
+
+    document.querySelector('.cmbtn').addEventListener('click',()=>{
+        ldmsgintvrl = setInterval(loadMsg,1000, cid2,cnm2);
+    });
+
+
 </script>
+
 
 <?php
 
