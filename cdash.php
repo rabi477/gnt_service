@@ -40,17 +40,18 @@ include_once("cnav.php");
 
         include_once("db_conn.php");
 
-        $spqry = "select service.id,name,s_type from user,service where utype='service provider' and user.id=service.id;";
+        $spqry = "select service.id,name,s_type,pfpic from user,service where utype='service provider' and user.id=service.id;";
         $spres = $conn->query($spqry);
 
         while ($val = $spres->fetch_assoc()) {
             $snm = $val['name'];
             $stp = $val['s_type'];
             $sid = $val['id'];
+            $pfpic = $val['pfpic'];
 
             $str = <<<idfr
             <div class='card text-center border-3 rounded-3 m-2 ' style='width: 18rem;'>
-            <img src='./gnt_img/avatar.png' class='card-img-top rounded-circle h-75 w-75 mx-auto mt-3 d-block' alt='avatar'>
+            <img src='$pfpic' class='card-img-top rounded-circle h-75 w-75 mx-auto mt-3 d-block' alt='avatar'>
             <hr>
             <div class='card-body'>
             <h5 class='card-title'>$snm</h5>
