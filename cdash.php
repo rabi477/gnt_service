@@ -117,6 +117,11 @@ include_once("cnav.php");
         ldmsgintvrl = setInterval(loadMsg,1000, sid2,snm2);
     });
 
+    function loagImg(evt){
+        var image = document.getElementById('prfimg');
+        image.src = URL.createObjectURL()
+    }
+
 </script>
 
 <?php include_once("footer.php") ?>
