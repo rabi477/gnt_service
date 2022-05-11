@@ -129,7 +129,7 @@ include_once("snav.php");
                     msgwin.scrollTop = msgwin.scrollHeight;
                 }
             };
-            xhttp.open("GET", "setmsg.php?cid=" + cid2 + "&sid=<?php echo $_SESSION['id']; ?>&msgText=" + msgText, true);
+            xhttp.open("GET", "setmsg.php?cid=" + cid2 + "&sid=<?php echo $_SESSION['id']; ?>&msgText=" + msgText+"&dirtn=stc", true);
             xhttp.send();
     }
 
@@ -144,7 +144,7 @@ include_once("snav.php");
                 msgwin.scrollTop = msgwin.scrollHeight;
             }
         };
-        xhttp.open("GET", "getmsg.php?cid="+cid+"&sid=<?php echo $_SESSION['id']; ?>", true);
+        xhttp.open("GET", "getmsg.php?cid="+cid+"&sid=<?php echo $_SESSION['id']; ?>"+"&dirtn=stc", true);
         xhttp.send();
     }
 
