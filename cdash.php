@@ -119,7 +119,7 @@ include_once("cnav.php");
 
     function loagImg(evt){
         var image = document.getElementById('prfimg');
-        image.src = URL.createObjectURL()
+        image.src = URL.createObjectURL();
     }
 
 </script>
