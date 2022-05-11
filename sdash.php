@@ -25,17 +25,18 @@ include_once("snav.php");
 
           include_once("db_conn.php");
           $sid = $_SESSION['id'];
-          $qry = "select DISTINCT(user.id),name from user,chat WHERE user.id=chat.cid and sid=$sid;";
+          $qry = "select DISTINCT(user.id),name,pfpic from user,chat WHERE user.id=chat.cid and sid=$sid;";
 
           $res = $conn->query($qry);
 
           while ($val = $res->fetch_assoc()) {
             $cnm = $val['name'];
             $cid = $val['id'];
+            $pfpic = $val['pfpic'];
 
             $str = <<<idfr
             <tr style="cursor:pointer;" class="cmbtn" data-bs-toggle="offcanvas" data-bs-target="#clientChatBox" aria-controls="offcanvasRight" onclick='loadMsg($cid,"$cnm")' >
-            <td class="w-25" ><img src="./gnt_img/avatar.png" alt="avatar" height="50px" width="50px" style="border-radius:50%"></td>
+            <td class="w-25" ><img src="$pfpic" alt="avatar" height="50px" width="50px" style="border-radius:50%"></td>
             <td class="fw-bold w-75 pt-4">$cnm</td>
             </tr>
             idfr;
