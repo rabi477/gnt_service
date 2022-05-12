@@ -10,6 +10,10 @@ include_once("cnav.php");
 
 ?>
 
+<div id="demo">
+
+</div>
+
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="cmsg" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
@@ -18,7 +22,7 @@ include_once("cnav.php");
     </div>
     <div class="offcanvas-body">
         <div class="position-relative h-100">
-            <div id="msg" class="d-flex flex-column overflow-auto text-wrap" style="height:88% ;" >
+            <div id="msg" class="d-flex flex-column overflow-auto text-wrap" style="height:88% ;">
 
             </div>
             <hr>
@@ -75,16 +79,16 @@ include_once("cnav.php");
 
     function sendMsg() {
         var msgText = document.getElementById('msgval').value;
-            var xhttp = new XMLHttpRequest();
-            document.getElementById('msgval').value="";
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("msg").innerHTML = this.responseText;
-                    msgwin.scrollTop = msgwin.scrollHeight;
-                }
-            };
-            xhttp.open("GET", "setmsg.php?cid=<?php echo $_SESSION['id']; ?>&sid=" + sid2 + "&msgText=" + msgText+"&dirtn=cts", true);
-            xhttp.send();
+        var xhttp = new XMLHttpRequest();
+        document.getElementById('msgval').value = "";
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("msg").innerHTML = this.responseText;
+                msgwin.scrollTop = msgwin.scrollHeight;
+            }
+        };
+        xhttp.open("GET", "setmsg.php?cid=<?php echo $_SESSION['id']; ?>&sid=" + sid2 + "&msgText=" + msgText + "&dirtn=cts", true);
+        xhttp.send();
     }
 
     function loadMsg(sid, snm) {
@@ -102,26 +106,51 @@ include_once("cnav.php");
         xhttp.send();
     }
 
-     
-    function clmsgintvrl(){
+
+    function clmsgintvrl() {
         clearInterval(ldmsgintvrl);
     }
 
-    document.querySelector('#msgval').addEventListener('keypress',(e)=>{
-        if(e.key === 'Enter'){
+    document.querySelector('#msgval').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
             sendMsg();
         }
     });
 
-    document.querySelector('.cmbtn').addEventListener('click',()=>{
-        ldmsgintvrl = setInterval(loadMsg,1000, sid2,snm2);
+    document.querySelector('.cmbtn').addEventListener('click', () => {
+        ldmsgintvrl = setInterval(loadMsg, 1000, sid2, snm2);
     });
 
-    function loagImg(evt){
+    function loagImg(event) {
         var image = document.getElementById('prfimg');
-        image.src = URL.createObjectURL();
+        image.src = URL.createObjectURL(event.target.files[0]);
     }
 
+    // function upImg() {
+    //     var xhttp = new XMLHttpRequest();
+    //     xhttp.onreadystatechange = function() {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             document.getElementById("demo").innerHTML = this.responseText;
+    //         }
+    //     };
+    //     xhttp.open("POST", "uploadpf.php", true);
+    //     xhttp.setRequestHeader("Content-Type", "multipart\/form-data");
+    //     xhttp.send();
+    // }
+
+    async function upImg() {
+        let formData = new FormData();
+        formData.append("file", pfpic.files[0]);
+        let response = await fetch('/uploadpf.php', {
+            method: "POST",
+            body: formData
+        });
+
+        let result = await response.json();
+        alert(result.message);
+    }
 </script>
+
+
 
 <?php include_once("footer.php") ?>

@@ -60,9 +60,9 @@
       </div>
       <div class="modal-body">
 
-        <div class="text-center position-relative" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#propic" data-bs-dismiss="modal" >
-          <img src="./gnt_img/avatar.png" class="rounded-circle" height="128px" width="128px" alt="">
-          <div class="position-absolute bottom-0 start-50 translate-middle-x" >
+        <div class="text-center position-relative" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#propic" data-bs-dismiss="modal">
+          <img src="<?php echo $_SESSION['pfpic']; ?>" class="rounded-circle" height="128px" width="128px" alt="">
+          <div class="position-absolute bottom-0 start-50 translate-middle-x">
             <div>Upload</div>
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
@@ -97,8 +97,10 @@
         </img>
       </div>
       <div class="modal-footer d-flex justify-content-between">
-        <input type="file" name="pfpic" onchange="loagImg(evt)" accept="image/*" >
-        <button type="button" class="btn btn-primary">Upload</button>
+        <div>
+          <input type="file" name="pfpic" id="pfpic" onchange="loagImg(event)" accept="image/*">
+          <button type="button" class="btn btn-primary" name="upBtn" onclick="upImg()">Upload</button>
+        </div>
       </div>
     </div>
   </div>

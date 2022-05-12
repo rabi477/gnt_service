@@ -13,6 +13,7 @@
 
         $a = mysqli_fetch_assoc($res);
 
+
         if ($a["verification"] == 1) {
             session_start();
 
@@ -20,6 +21,7 @@
             $_SESSION["email"] = $a["email"];
             $_SESSION["utype"] = $a["utype"];
             $_SESSION["id"] = $a["id"];
+            $_SESSION["pfpic"] = $a["pfpic"];
 
             if (isset($rme)) {
                 setcookie("cred", $email . ":" . $pwd, time() + 86400, '/');
@@ -104,6 +106,7 @@
                     $_SESSION["email"] = $a["email"];
                     $_SESSION["utype"] = $a["utype"];
                     $_SESSION["id"] = $a["id"];
+                    $_SESSION["pfpic"] = $a["pfpic"];
 
                     if (isset($rme)) {
                         setcookie("cred", "$email:$pwd", time() + 86400, '/');
