@@ -89,7 +89,7 @@ include_once("cnav.php");
 
             $str = <<<idfr
             <div class='card text-center border-3 rounded-3 m-2 ' style='width: 18rem;'>
-            <img src='$pfpic' class='card-img-top rounded-circle h-75 w-75 mx-auto mt-3 d-block' alt='avatar'>
+            <img src='$pfpic' class='card-img-top w-50 h-50 rounded-circle mx-auto mt-3 d-block' alt='avatar'>
             <hr>
             <div class='card-body'>
             <h5 class='card-title'>$snm</h5>
