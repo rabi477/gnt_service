@@ -21,7 +21,9 @@ extract($_POST);
         mysqli_query($conn,$qry);
     }
 
-    header("location:cdash.php");
+    $str1 = explode("/",$_SERVER["HTTP_REFERER"]);
+    $str2 = $str1[sizeof($str1)-1];
+    header("location:$str2");
 
 ?>
 

@@ -176,6 +176,12 @@ include_once("snav.php");
   document.querySelector('.cmbtn').addEventListener('click', () => {
     ldmsgintvrl = setInterval(loadMsg, 1000, cid2, cnm2);
   });
+
+
+  function loagImg(event) {
+    var image = document.getElementById('prfimg');
+    image.src = URL.createObjectURL(event.target.files[0]);
+  }
 </script>
 
 

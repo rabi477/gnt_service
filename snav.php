@@ -45,12 +45,48 @@
 
       </div>
       <div class="modal-footer justify-content-between">
-        <a href="test.php" class="btn btn-primary">Update Profile</a>
+        <a href="test.php" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#updateProfile" >Update Profile</a>
         <div>
           <a href="logout.php" class="btn btn-primary">Logout</a>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Update Profile -->
+<div class="modal fade" id="updateProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <form class="modal-content" method="POST" action="updateProfile.php" enctype="multipart/form-data">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="text-center mb-3">
+          <div class="mb-3">
+            <img src="<?php echo $_SESSION['pfpic']; ?>" class="rounded-circle" id="prfimg" height="128px" width="128px" alt="avatar">
+          </div>
+          <input type="file" name="pfpic" accept="image/*" onchange="loagImg(event)">
+        </div>
+
+        <div class="mb-3">
+          <label for="Name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="Name" value="<?php echo $_SESSION["name"]; ?>">
+        </div>
+        <div class="mb-3">
+          <label for="inputEmail" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="inputEmail" value="<?php echo $_SESSION["email"]; ?>" aria-describedby="emailHelp">
+        </div>
+         
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </form>
   </div>
 </div>
 
