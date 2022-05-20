@@ -53,7 +53,7 @@ include_once("snav.php");
 <!-- client chat box -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="clientChatBox" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
-    <span data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="color: grey;" onclick="clmsgintvrl()" >
+    <span data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="color: grey;" onclick="clmsgintvrl()">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
       </svg>
@@ -108,6 +108,19 @@ include_once("snav.php");
   </div>
 </div>
 
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 bg-danger" style="height: 80vh;">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem fugit consequatur, sit iure quaerat est. Odio tempore suscipit nostrum perferendis eos maiores iure consequuntur quos ipsum enim? Quam quas maiores provident beatae labore corporis fugit cumque consequuntur ex sunt deleniti ipsam, ea quibusdam eaque ab aliquid nisi perspiciatis earum, quidem saepe. Delectus inventore quasi enim eaque fugiat nam sed facere modi voluptate odio totam in voluptates eos obcaecati, mollitia neque laudantium explicabo quod sequi corrupti. Ratione autem, architecto unde tempore corrupti ipsam, aperiam provident saepe animi itaque iusto iure, excepturi assumenda qui at culpa laudantium. Animi est doloribus nisi dignissimos?
+    </div>
+    <div class="col-md-8 bg-success" style="height: 80vh;">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis vel nemo quia animi architecto quo sunt facilis. Debitis, sapiente placeat nesciunt delectus vel animi tenetur earum voluptatum veniam alias soluta incidunt dolore laborum labore ut molestias architecto assumenda. Sapiente recusandae similique possimus rerum eaque, vel est, vero cumque incidunt excepturi error ipsa, numquam praesentium. Aut nihil ipsam mollitia quidem similique nesciunt dolorem porro laborum repellendus itaque! Impedit veritatis eligendi reiciendis eum quod culpa aspernatur itaque, illo laudantium, minima fugiat. Quaerat, eos aspernatur adipisci assumenda commodi voluptatum veniam amet fugiat modi dignissimos, quas saepe. Consequuntur repudiandae eos neque sunt labore. Ipsum.
+    </div>
+  </div>
+</div>
+
+
 <script>
   function pbtnact() {
     let l = document.getElementById('stlist');
@@ -116,55 +129,53 @@ include_once("snav.php");
     }
   }
 
-    var cid2, cnm2;
-    var msgwin = document.getElementById('msg');
-    var ldmsgintvrl;
+  var cid2, cnm2;
+  var msgwin = document.getElementById('msg');
+  var ldmsgintvrl;
 
-    function sendMsg() {
-            var msgText = document.getElementById('msgval').value;
-            var xhttp = new XMLHttpRequest();
-            document.getElementById('msgval').value="";
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("msg").innerHTML = this.responseText;
-                    msgwin.scrollTop = msgwin.scrollHeight;
-                }
-            };
-            xhttp.open("GET", "setmsg.php?cid=" + cid2 + "&sid=<?php echo $_SESSION['id']; ?>&msgText=" + msgText+"&dirtn=stc", true);
-            xhttp.send();
+  function sendMsg() {
+    var msgText = document.getElementById('msgval').value;
+    var xhttp = new XMLHttpRequest();
+    document.getElementById('msgval').value = "";
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("msg").innerHTML = this.responseText;
+        msgwin.scrollTop = msgwin.scrollHeight;
+      }
+    };
+    xhttp.open("GET", "setmsg.php?cid=" + cid2 + "&sid=<?php echo $_SESSION['id']; ?>&msgText=" + msgText + "&dirtn=stc", true);
+    xhttp.send();
+  }
+
+  function loadMsg(cid, cnm) {
+    cid2 = cid;
+    cnm2 = cnm;
+    document.getElementById('offcanvasRightLabel').innerText = cnm;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("msg").innerHTML = this.responseText;
+        msgwin.scrollTop = msgwin.scrollHeight;
+      }
+    };
+    xhttp.open("GET", "getmsg.php?cid=" + cid + "&sid=<?php echo $_SESSION['id']; ?>" + "&dirtn=stc", true);
+    xhttp.send();
+  }
+
+
+  function clmsgintvrl() {
+    clearInterval(ldmsgintvrl);
+  }
+
+  document.querySelector('#msgval').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      sendMsg();
     }
+  });
 
-    function loadMsg(cid, cnm) {
-        cid2 = cid;
-        cnm2 = cnm;
-        document.getElementById('offcanvasRightLabel').innerText = cnm;
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("msg").innerHTML = this.responseText;
-                msgwin.scrollTop = msgwin.scrollHeight;
-            }
-        };
-        xhttp.open("GET", "getmsg.php?cid="+cid+"&sid=<?php echo $_SESSION['id']; ?>"+"&dirtn=stc", true);
-        xhttp.send();
-    }
-
-     
-    function clmsgintvrl(){
-        clearInterval(ldmsgintvrl);
-    }
-
-    document.querySelector('#msgval').addEventListener('keypress',(e)=>{
-        if(e.key === 'Enter'){
-            sendMsg();
-        }
-    });
-
-    document.querySelector('.cmbtn').addEventListener('click',()=>{
-        ldmsgintvrl = setInterval(loadMsg,1000, cid2,cnm2);
-    });
-
-
+  document.querySelector('.cmbtn').addEventListener('click', () => {
+    ldmsgintvrl = setInterval(loadMsg, 1000, cid2, cnm2);
+  });
 </script>
 
 

@@ -1,5 +1,5 @@
 <?php
 
-echo date("y-m-d",time());
+var_dump($_SERVER);
 
 ?>

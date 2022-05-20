@@ -6,6 +6,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#crtJobs">
+          + Create Jobs
+        </button>
       </ul>
       <div class="d-flex">
         <div>
@@ -60,21 +63,15 @@
       </div>
       <div class="modal-body">
 
-        <div class="text-center position-relative" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#propic" data-bs-dismiss="modal">
-          <img src="<?php echo $_SESSION['pfpic']; ?>" class="rounded-circle" height="128px" width="128px" alt="">
-          <div class="position-absolute bottom-0 start-50 translate-middle-x">
-            <div>Upload</div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-            </svg>
-          </div>
+        <div class="text-center">
+          <img src="<?php echo $_SESSION['pfpic']; ?>" class="rounded-circle" height="128px" width="128px" alt="avatar">
         </div>
 
         <div class="h3 my-2 text-center"><?php echo $_SESSION["name"]; ?></div>
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <div class="modal-footer justify-content-between">
+        <a class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#updateProfile">Update Profile</a>
         <div>
           <a href="logout.php" class="btn btn-primary">Logout</a>
         </div>
@@ -83,25 +80,38 @@
   </div>
 </div>
 
-<!-- profile picture upload modal -->
-<div class="modal fade" id="propic" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<!-- Update Profile -->
+<div class="modal fade" id="updateProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <form class="modal-content" method="POST" action="updateProfile.php" enctype="multipart/form-data">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Upload Image</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <img src="./gnt_img/avatar.png" width="100px" class="d-block mx-auto" id="prfimg">
 
-        </img>
-      </div>
-      <div class="modal-footer d-flex justify-content-between">
-        <div>
-          <input type="file" name="pfpic" id="pfpic" onchange="loagImg(event)" accept="image/*">
-          <button type="button" class="btn btn-primary" name="upBtn" onclick="upImg()">Upload</button>
+        <div class="text-center mb-3">
+          <div class="mb-3">
+            <img src="<?php echo $_SESSION['pfpic']; ?>" class="rounded-circle" id="prfimg" height="128px" width="128px" alt="avatar">
+          </div>
+          <input type="file" name="pfpic" accept="image/*" onchange="loagImg(event)">
         </div>
+
+        <div class="mb-3">
+          <label for="Name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="Name" value="<?php echo $_SESSION["name"]; ?>">
+        </div>
+        <div class="mb-3">
+          <label for="inputEmail" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="inputEmail" value="<?php echo $_SESSION["email"]; ?>" aria-describedby="emailHelp">
+        </div>
+         
+
       </div>
-    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </form>
   </div>
 </div>

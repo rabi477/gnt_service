@@ -10,11 +10,45 @@ include_once("cnav.php");
 
 ?>
 
-<div id="demo">
-
+<!-- Create Jobs -->
+<div class="modal fade" id="crtJobs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <form class="modal-content" method="POST" action="crtJob.php">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Job Detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <select class="form-select" aria-label="Default select example" name="jobCat">
+                        <option selected disabled>Select Job Category</option>
+                        <option value="Painter">Painter</option>
+                        <option value="Electrician">Electrician</option>
+                        <option value="Carpenter">Carpenter</option>
+                        <option value="Gardener">Gardener</option>
+                        <option value="Plumber">Plumber</option>
+                        <option value="Electronic repair">Electronic repair</option>
+                        <option value="House cleaner">House cleaner</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="jobTitle" class="form-label">Job Title</label>
+                    <input type="text" class="form-control" id="jobTitle" name="jobTle">
+                </div>
+                <div class="mb-3">
+                    <label for="jobDescription" class="form-label">Job Description</label>
+                    <textarea class="form-control" id="jobDescription" rows="4" name="jobDesp" ></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
 </div>
 
-
+<!-- Chat offcanvas -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="cmsg" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
         <h5 id="offcanvasRightLabel">Messages</h5>
@@ -39,7 +73,7 @@ include_once("cnav.php");
 </div>
 
 <div class="container">
-    <div class="row justify-content-around">
+    <div class="row justify-content-evenly">
         <?php
 
         include_once("db_conn.php");
@@ -124,30 +158,6 @@ include_once("cnav.php");
     function loagImg(event) {
         var image = document.getElementById('prfimg');
         image.src = URL.createObjectURL(event.target.files[0]);
-    }
-
-    // function upImg() {
-    //     var xhttp = new XMLHttpRequest();
-    //     xhttp.onreadystatechange = function() {
-    //         if (this.readyState == 4 && this.status == 200) {
-    //             document.getElementById("demo").innerHTML = this.responseText;
-    //         }
-    //     };
-    //     xhttp.open("POST", "uploadpf.php", true);
-    //     xhttp.setRequestHeader("Content-Type", "multipart\/form-data");
-    //     xhttp.send();
-    // }
-
-    async function upImg() {
-        let formData = new FormData();
-        formData.append("file", pfpic.files[0]);
-        let response = await fetch('/uploadpf.php', {
-            method: "POST",
-            body: formData
-        });
-
-        let result = await response.json();
-        alert(result.message);
     }
 </script>
 

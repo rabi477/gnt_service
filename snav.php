@@ -18,7 +18,7 @@
                 </div>
                 <div class="px-3">
                     <!-- Button trigger modal Account -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#login">
                         <img src="./gnt_img/person-circle.svg" alt="Account">
                     </button>
                 </div>
@@ -28,23 +28,29 @@
 </nav>
 
 <!-- Modal Account -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"> <?php echo $_SESSION["name"]; ?> </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <div>
-                    <a href="logout.php" class="btn btn-primary">Logout</a>
-                </div>
-            </div>
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> My Account </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="text-center position-relative" >
+          <img src="<?php echo $_SESSION['pfpic']; ?>" class="rounded-circle" height="128px" width="128px" alt="avatar">
         </div>
+
+        <div class="h3 my-2 text-center"><?php echo $_SESSION["name"]; ?></div>
+
+      </div>
+      <div class="modal-footer justify-content-between">
+        <a href="test.php" class="btn btn-primary">Update Profile</a>
+        <div>
+          <a href="logout.php" class="btn btn-primary">Logout</a>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
