@@ -111,10 +111,10 @@ include_once("snav.php");
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-4 bg-danger" style="height: 80vh;">
+    <div class="col-md-3 bg-danger" style="height: 90vh;">
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem fugit consequatur, sit iure quaerat est. Odio tempore suscipit nostrum perferendis eos maiores iure consequuntur quos ipsum enim? Quam quas maiores provident beatae labore corporis fugit cumque consequuntur ex sunt deleniti ipsam, ea quibusdam eaque ab aliquid nisi perspiciatis earum, quidem saepe. Delectus inventore quasi enim eaque fugiat nam sed facere modi voluptate odio totam in voluptates eos obcaecati, mollitia neque laudantium explicabo quod sequi corrupti. Ratione autem, architecto unde tempore corrupti ipsam, aperiam provident saepe animi itaque iusto iure, excepturi assumenda qui at culpa laudantium. Animi est doloribus nisi dignissimos?
     </div>
-    <div class="col-md-8 bg-success" style="height: 80vh;">
+    <div class="col-md-9 bg-success" style="height: 90vh;">
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis vel nemo quia animi architecto quo sunt facilis. Debitis, sapiente placeat nesciunt delectus vel animi tenetur earum voluptatum veniam alias soluta incidunt dolore laborum labore ut molestias architecto assumenda. Sapiente recusandae similique possimus rerum eaque, vel est, vero cumque incidunt excepturi error ipsa, numquam praesentium. Aut nihil ipsam mollitia quidem similique nesciunt dolorem porro laborum repellendus itaque! Impedit veritatis eligendi reiciendis eum quod culpa aspernatur itaque, illo laudantium, minima fugiat. Quaerat, eos aspernatur adipisci assumenda commodi voluptatum veniam amet fugiat modi dignissimos, quas saepe. Consequuntur repudiandae eos neque sunt labore. Ipsum.
     </div>
   </div>
