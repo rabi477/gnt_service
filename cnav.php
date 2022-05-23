@@ -103,7 +103,7 @@
         </div>
         <div class="mb-3">
           <label for="inputEmail" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="inputEmail" value="<?php echo $_SESSION["email"]; ?>" aria-describedby="emailHelp">
+          <input type="email" class="form-control" id="inputEmail" value="<?php echo $_SESSION["email"]; ?>" disabled aria-describedby="emailHelp">
         </div>
          
 
