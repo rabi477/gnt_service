@@ -11,7 +11,7 @@ include_once("snav.php");
 
 ?>
 
-
+<!-- chat list  -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
     <h5>Client</h5>

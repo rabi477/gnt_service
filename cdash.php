@@ -37,7 +37,7 @@ include_once("cnav.php");
                 </div>
                 <div class="mb-3">
                     <label for="jobDescription" class="form-label">Job Description</label>
-                    <textarea class="form-control" id="jobDescription" rows="4" name="jobDesp" ></textarea>
+                    <textarea class="form-control" id="jobDescription" rows="4" name="jobDesp"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -48,9 +48,53 @@ include_once("cnav.php");
     </div>
 </div>
 
+<!-- chat list  -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h5>Client</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="overflow-auto">
+            <table class="table table-hover">
+                <tbody>
+                    <?php
+
+                    include_once("db_conn.php");
+                    $cid = $_SESSION['id'];
+                    $qry = "select DISTINCT(user.id),name,pfpic from user,chat WHERE user.id=chat.sid and cid=$cid;";
+
+                    $res = $conn->query($qry);
+
+                    while ($val = $res->fetch_assoc()) {
+                        $snm = $val['name'];
+                        $sid = $val['id'];
+                        $pfpic = $val['pfpic'];
+
+                        $str = <<<idfr
+            <tr style="cursor:pointer;" class="cmbtn" data-bs-toggle="offcanvas" data-bs-target="#cmsg" aria-controls="offcanvasRight" onclick='loadMsg($sid,"$snm")' >
+            <td class="w-25" ><img src="$pfpic" alt="avatar" height="50px" width="50px" style="border-radius:50%"></td>
+            <td class="fw-bold w-75 pt-4">$snm</td>
+            </tr>
+            idfr;
+
+                        echo $str;
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 <!-- Chat offcanvas -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="cmsg" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
+        <span data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style="color: grey;" onclick="clmsgintvrl()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+            </svg>
+        </span>
         <h5 id="offcanvasRightLabel">Messages</h5>
         <button type="button" class="btn-close text-reset" onclick="clmsgintvrl()" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
