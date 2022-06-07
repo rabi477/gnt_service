@@ -13,7 +13,7 @@
       $res  = $conn->query($chkqry);
 
       if(!$res->num_rows>0){
-        $qry = "insert into user(name,gender,email,dob,pwd,aadhaar,utype) values('$uname','$gender','$email','$dob','$pwd',$adn,'$utype');";
+        $qry = "insert into user(name,gender,email,dob,pwd,aadhaar,utype,address) values('$uname','$gender','$email','$dob','$pwd',$adn,'$utype','$address');";
 
         if ($conn->query($qry)) {
           echo "<div class='alert alert-success d-flex align-items-center' role='alert'>
@@ -66,7 +66,7 @@
 
       <div class="mb-3">
         <label class="form-label">Email</label>
-        <input type="text" class="form-control" name="email" required>
+        <input type="email" class="form-control" name="email" required>
       </div>
 
       <div class="mb-3">
@@ -98,6 +98,11 @@
             Service provider
           </label>
         </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Address</label>
+        <textarea cols="6" rows="4" class="form-control" name="address" required></textarea>
       </div>
 
       <div class="col-12">

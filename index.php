@@ -107,6 +107,7 @@
                     $_SESSION["utype"] = $a["utype"];
                     $_SESSION["id"] = $a["id"];
                     $_SESSION["pfpic"] = $a["pfpic"];
+                    $_SESSION["address"] = $a["address"];
 
                     if (isset($rme)) {
                         setcookie("cred", "$email:$pwd", time() + 86400, '/');

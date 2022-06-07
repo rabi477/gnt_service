@@ -109,14 +109,34 @@ include_once("snav.php");
 </div>
 
 
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-3 bg-danger" style="height: 90vh;">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Autem fugit consequatur, sit iure quaerat est. Odio tempore suscipit nostrum perferendis eos maiores iure consequuntur quos ipsum enim? Quam quas maiores provident beatae labore corporis fugit cumque consequuntur ex sunt deleniti ipsam, ea quibusdam eaque ab aliquid nisi perspiciatis earum, quidem saepe. Delectus inventore quasi enim eaque fugiat nam sed facere modi voluptate odio totam in voluptates eos obcaecati, mollitia neque laudantium explicabo quod sequi corrupti. Ratione autem, architecto unde tempore corrupti ipsam, aperiam provident saepe animi itaque iusto iure, excepturi assumenda qui at culpa laudantium. Animi est doloribus nisi dignissimos?
-    </div>
-    <div class="col-md-9 bg-success" style="height: 90vh;">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perferendis vel nemo quia animi architecto quo sunt facilis. Debitis, sapiente placeat nesciunt delectus vel animi tenetur earum voluptatum veniam alias soluta incidunt dolore laborum labore ut molestias architecto assumenda. Sapiente recusandae similique possimus rerum eaque, vel est, vero cumque incidunt excepturi error ipsa, numquam praesentium. Aut nihil ipsam mollitia quidem similique nesciunt dolorem porro laborum repellendus itaque! Impedit veritatis eligendi reiciendis eum quod culpa aspernatur itaque, illo laudantium, minima fugiat. Quaerat, eos aspernatur adipisci assumenda commodi voluptatum veniam amet fugiat modi dignissimos, quas saepe. Consequuntur repudiandae eos neque sunt labore. Ipsum.
-    </div>
+<div class="container">
+  <div class="row justify-content-evenly">
+    <?php
+    include_once("db_conn.php");
+    $sid = $_SESSION['id'];
+    $ctqry = "select job.id,name,pfpic from user,job,service where job_cat=(select s_type where service.id=$sid) and job.id=user.id;";
+
+    $res = mysqli_query($conn, $ctqry);
+    while ($val2 = $res->fetch_assoc()) {
+      $cnm2 = $val2['name'];
+      $cid2 = $val2['id'];
+      $pfpic = $val2['pfpic'];
+
+      $str2=<<<ccard
+        <div class="card text-center border-3 rounded-3 m-2" style="width: 18rem;">
+        <img src="$pfpic" class="card-img-top rounded-circle w-50 h-50 mx-auto d-block mt-3 " alt="avatar">
+        <hr>
+        <div class="card-body">
+          <h5 class="card-title">$cnm2</h5>
+          <a href="#" class="btn btn-primary mt-2">View Details</a>
+        </div>
+        </div>
+      ccard;
+
+      echo $str2;
+    }
+
+    ?>
   </div>
 </div>
 

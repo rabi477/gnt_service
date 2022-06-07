@@ -39,6 +39,10 @@ include_once("cnav.php");
                     <label for="jobDescription" class="form-label">Job Description</label>
                     <textarea class="form-control" id="jobDescription" rows="4" name="jobDesp"></textarea>
                 </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address</label>
+                    <textarea class="form-control" id="address" rows="4" name="address"><?php echo $_SESSION['address']; ?></textarea>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -72,11 +76,11 @@ include_once("cnav.php");
                         $pfpic = $val['pfpic'];
 
                         $str = <<<idfr
-            <tr style="cursor:pointer;" class="cmbtn" data-bs-toggle="offcanvas" data-bs-target="#cmsg" aria-controls="offcanvasRight" onclick='loadMsg($sid,"$snm")' >
-            <td class="w-25" ><img src="$pfpic" alt="avatar" height="50px" width="50px" style="border-radius:50%"></td>
-            <td class="fw-bold w-75 pt-4">$snm</td>
-            </tr>
-            idfr;
+                            <tr style="cursor:pointer;" class="cmbtn" data-bs-toggle="offcanvas" data-bs-target="#cmsg" aria-controls="offcanvasRight" onclick='loadMsg($sid,"$snm")' >
+                            <td class="w-25" ><img src="$pfpic" alt="avatar" height="50px" width="50px" style="border-radius:50%"></td>
+                            <td class="fw-bold w-75 pt-4">$snm</td>
+                            </tr>
+                        idfr;
 
                         echo $str;
                     }
@@ -132,7 +136,7 @@ include_once("cnav.php");
             $pfpic = $val['pfpic'];
 
             $str = <<<idfr
-            <div class='card text-center border-3 rounded-3 m-2 ' style='width: 18rem;'>
+            <div class='card text-center border-3 rounded-3 m-2' style='width: 18rem;'>
             <img src='$pfpic' class='card-img-top w-50 h-50 rounded-circle mx-auto mt-3 d-block' alt='avatar'>
             <hr>
             <div class='card-body'>
