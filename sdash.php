@@ -155,7 +155,7 @@ include_once("snav.php");
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Accept</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" data-bs-toggle="offcanvas" data-bs-target="#clientChatBox" aria-controls="offcanvasRight" id="vBtn" >Accept</button>
       </div>
     </div>
   </div>
@@ -205,6 +205,7 @@ include_once("snav.php");
 
   function vDetails(cid,cnm,jid){
     document.getElementById('vTitle').innerText=cnm;
+    document.getElementById('vBtn').setAttribute('onclick','loadMsg('+cid+',\"'+cnm+'\")');
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
