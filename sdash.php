@@ -114,13 +114,14 @@ include_once("snav.php");
     <?php
     include_once("db_conn.php");
     $sid = $_SESSION['id'];
-    $ctqry = "select job.id,name,pfpic from user,job,service where job_cat=(select s_type where service.id=$sid) and job.id=user.id;";
+    $ctqry = "select job_id,job.cid,name,pfpic from user,job,service where job_cat=(select s_type where service.id=$sid) and job.cid=user.id;";
 
     $res = mysqli_query($conn, $ctqry);
     while ($val2 = $res->fetch_assoc()) {
       $cnm2 = $val2['name'];
-      $cid2 = $val2['id'];
+      $cid2 = $val2['cid'];
       $pfpic = $val2['pfpic'];
+      $jid = $val2['job_id'];
 
       $str2=<<<ccard
         <div class="card text-center border-3 rounded-3 m-2" style="width: 18rem;">
@@ -128,7 +129,7 @@ include_once("snav.php");
         <hr>
         <div class="card-body">
           <h5 class="card-title">$cnm2</h5>
-          <a href="#" class="btn btn-primary mt-2">View Details</a>
+          <a href="#" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#viewDetails" onclick="vDetails($cid2,'$cnm2',$jid)" >View Details</a>
         </div>
         </div>
       ccard;
@@ -137,6 +138,26 @@ include_once("snav.php");
     }
 
     ?>
+  </div>
+</div>
+
+
+<!-- View Details -->
+<div class="modal fade" id="viewDetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="vTitle"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="vJobDetail">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Accept</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -179,6 +200,18 @@ include_once("snav.php");
       }
     };
     xhttp.open("GET", "getmsg.php?cid=" + cid + "&sid=<?php echo $_SESSION['id']; ?>" + "&dirtn=stc", true);
+    xhttp.send();
+  }
+
+  function vDetails(cid,cnm,jid){
+    document.getElementById('vTitle').innerText=cnm;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("vJobDetail").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "getJobDetail.php?cid="+cid+"&jid="+jid+"&sid=<?php echo $_SESSION['id'];?>", true);
     xhttp.send();
   }
 
