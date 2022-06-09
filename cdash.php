@@ -67,7 +67,7 @@ include_once("cnav.php");
 
                     include_once("db_conn.php");
                     $cid = $_SESSION['id'];
-                    $qry = "select DISTINCT(user.id),name,pfpic from user,chat WHERE user.id=chat.sid and cid=$cid;";
+                    $qry = "select DISTINCT(user.id),name,pfpic from user,chat WHERE user.id=chat.sid and cid=$cid order by time desc;";
 
                     $res = $conn->query($qry);
 
@@ -78,7 +78,7 @@ include_once("cnav.php");
 
                         $str = <<<idfr
                             <tr style="cursor:pointer;" class="cmbtn" data-bs-toggle="offcanvas" data-bs-target="#cmsg" aria-controls="offcanvasRight" onclick='loadMsg($sid,"$snm")' >
-                            <td class="w-25" ><img src="$pfpic" alt="avatar" height="50px" width="50px" style="border-radius:50%"></td>
+                            <td><img src="$pfpic" alt="avatar" height="50px" width="50px" style="border-radius:50%"></td>
                             <td class="fw-bold w-75 pt-4">$snm</td>
                             </tr>
                         idfr;
