@@ -83,6 +83,10 @@
           <label for="inputEmail" class="form-label">Category</label>
           <input type="text" class="form-control" id="inputEmail" value="<?php echo $_SESSION['s_type']; ?>" disabled aria-describedby="emailHelp">
         </div>
+        <div class="mb-3">
+          <label for="inputAddress" class="form-label">Address</label>
+          <textarea rows="4" class="form-control" id="inputAddress"><?php echo $_SESSION["address"]; ?></textarea>
+        </div>
          
 
       </div>
