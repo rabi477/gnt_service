@@ -1,4 +1,5 @@
-<?php session_start();
+<?php 
+session_start();
 
 if (!isset($_SESSION["utype"]) || $_SESSION["utype"] != "customer") {
     header("location:index.php");
