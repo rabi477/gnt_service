@@ -79,6 +79,10 @@
           <label for="inputEmail" class="form-label">Email address</label>
           <input type="email" class="form-control" id="inputEmail" value="<?php echo $_SESSION["email"]; ?>" disabled aria-describedby="emailHelp">
         </div>
+        <div class="mb-3">
+          <label for="inputEmail" class="form-label">Category</label>
+          <input type="text" class="form-control" id="inputEmail" value="<?php $_SESSION['s_type'] ?>" disabled aria-describedby="emailHelp">
+        </div>
          
 
       </div>

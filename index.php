@@ -109,8 +109,18 @@
                     $_SESSION["pfpic"] = $a["pfpic"];
                     $_SESSION["address"] = $a["address"];
 
+
+
                     if (isset($rme)) {
                         setcookie("cred", "$email:$pwd", time() + 86400, '/');
+                    }
+
+                    if($a["utype"] == "service provider"){
+                        $id = $a["id"];
+                        $sqry = "select s_type from service where id=$id;";
+                        $res2 = mysqli_query($conn,$sqry);
+                        $val = mysqli_fetch_assoc($res2);
+                        $_SESSION['s_type'] = $val['s_type'];
                     }
 
 
