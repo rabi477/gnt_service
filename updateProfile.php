@@ -19,6 +19,7 @@ extract($_POST);
 
     if(move_uploaded_file($_FILES['pfpic']['tmp_name'],"./gnt_img/img_$id.$ext")){
         mysqli_query($conn,$qry);
+        $_SESSION["pfpic"]="./gnt_img/img_$id.$ext";
     }
 
     $str1 = explode("/",$_SERVER["HTTP_REFERER"]);
