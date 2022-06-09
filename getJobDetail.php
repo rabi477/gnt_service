@@ -18,16 +18,21 @@ $addr = $val['address'];
 $str=<<<idfr
 <div>
     <div class="mb-3">
-        <label class="form-label">Job Title</label>
+        <label class="form-label">Work Title</label>
         <input type="text" class="form-control" value="$tle" disabled>
     </div>
     <div class="mb-3">
-        <label class="form-label">Job Description</label>
+        <label class="form-label">Work Description</label>
         <textarea class="form-control" rows="4" disabled>$desp</textarea>
     </div>
     <div class="mb-3">
         <label class="form-label">Customer Address</label>
         <textarea class="form-control" rows="4" disabled>$addr</textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Enter OTP for accept</label>
+        <input type="number" class="form-control">
+        <div class="form-text"> This OTP you will get from your customer !</div>
     </div>
 </div>
 idfr;

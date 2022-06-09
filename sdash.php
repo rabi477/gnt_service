@@ -108,7 +108,7 @@ include_once("snav.php");
   </div>
 </div>
 
-
+<!-- Work Details card -->
 <div class="container">
   <div class="row justify-content-evenly">
     <?php
@@ -151,11 +151,10 @@ include_once("snav.php");
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="vJobDetail">
-        ...
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal" data-bs-toggle="offcanvas" data-bs-target="#clientChatBox" aria-controls="offcanvasRight" id="vBtn" >Accept</button>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="offcanvas" data-bs-target="#clientChatBox" aria-controls="offcanvasRight" id="vBtn" >Message</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal" >Accept</button>
       </div>
     </div>
   </div>
@@ -205,11 +204,11 @@ include_once("snav.php");
 
   function vDetails(cid,cnm,jid){
     document.getElementById('vTitle').innerText=cnm;
-    document.getElementById('vBtn').setAttribute('onclick','loadMsg('+cid+',\"'+cnm+'\")');
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         document.getElementById("vJobDetail").innerHTML = this.responseText;
+        document.getElementById('vBtn').setAttribute('onclick','loadMsg('+cid+',\"'+cnm+'\")');
       }
     };
     xhttp.open("GET", "getJobDetail.php?cid="+cid+"&jid="+jid+"&sid=<?php echo $_SESSION['id'];?>", true);
