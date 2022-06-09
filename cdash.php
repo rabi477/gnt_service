@@ -15,7 +15,7 @@ include_once("cnav.php");
     <div class="modal-dialog modal-fullscreen">
         <form class="modal-content" method="POST" action="crtJob.php">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Job Detail</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Enter Work Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -32,11 +32,11 @@ include_once("cnav.php");
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="jobTitle" class="form-label">Job Title</label>
+                    <label for="jobTitle" class="form-label">Work Title</label>
                     <input type="text" class="form-control" id="jobTitle" name="jobTle">
                 </div>
                 <div class="mb-3">
-                    <label for="jobDescription" class="form-label">Job Description</label>
+                    <label for="jobDescription" class="form-label">Work Description</label>
                     <textarea class="form-control" id="jobDescription" rows="4" name="jobDesp"></textarea>
                 </div>
                 <div class="mb-3">
