@@ -211,7 +211,7 @@ include_once("snav.php");
         document.getElementById('vBtn').setAttribute('onclick','loadMsg('+cid+',\"'+cnm+'\")');
       }
     };
-    xhttp.open("GET", "getJobDetail.php?cid="+cid+"&jid="+jid+"&sid=<?php echo $_SESSION['id'];?>", true);
+    xhttp.open("GET", "getJobDetail.php?jid="+jid, true);
     xhttp.send();
   }
 

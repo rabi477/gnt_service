@@ -16,7 +16,7 @@
             <tr>
                 <td class="fw-bold">$tle</td>
                 <td class="d-flex justify-content-end">
-                <button class="btn btn-primary mx-2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#editWorkList">Edit</button>
+                <button class="btn btn-primary mx-2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#editWorkList" onclick="editWorkList($jid)">Edit</button>
                 <button class="btn btn-danger" onclick="deleteWorkList($jid)" >Delete</button>
                 </td>
             </tr>

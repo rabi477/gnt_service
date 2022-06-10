@@ -83,18 +83,18 @@ include_once("cnav.php");
 <!-- Edit Worklist -->
 <div class="modal fade" id="editWorkList" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen">
-    <div class="modal-content">
+    <form class="modal-content" action="updateWorkList.php" method="POST">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Edit Worklist</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="loadWorkList">
         ...
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Update Worklist</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 
@@ -257,13 +257,21 @@ include_once("cnav.php");
     setInterval(workList, 2000);
 
     function deleteWorkList(jid) {
+        if(confirm("Are you sure you want to delete?")){
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "deleteWorkList.php?jid="+jid, true);
+            xhttp.send();
+        }
+    }
+
+    function editWorkList(jid){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-               ;
-            }
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("loadWorkList").innerHTML = this.responseText;
+        }
         };
-        xhttp.open("GET", "deleteWorkList.php?jid="+jid, true);
+        xhttp.open("GET", "getWorkList.php?jid="+jid, true);
         xhttp.send();
     }
 
