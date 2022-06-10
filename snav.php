@@ -6,6 +6,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <button type="button" class="btn btn-primary ms-3 my-2" data-bs-toggle="modal" data-bs-target="#workList">
+                Work List
+              </button>
             </ul>
             <div class="d-flex">
                 <div>
