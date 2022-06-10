@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 if (!isset($_SESSION["utype"]) || $_SESSION["utype"] != "customer") {
@@ -21,7 +21,7 @@ include_once("cnav.php");
             </div>
             <div class="modal-body">
                 <div class="mb-3">
-                    <select class="form-select" aria-label="Default select example" name="jobCat">
+                    <select class="form-select" aria-label="Default select example" id="jobCat" name="jobCat" onclick="jbtnact()" >
                         <option selected disabled>Select Work Category</option>
                         <option value="Painter">Painter</option>
                         <option value="Electrician">Electrician</option>
@@ -51,10 +51,51 @@ include_once("cnav.php");
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" id="jobBtn" disabled>Submit</button>
             </div>
         </form>
     </div>
+</div>
+
+
+<!-- Work List -->
+<div class="modal fade" id="workList" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Work List</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tbody id="wList">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Worklist -->
+<div class="modal fade" id="editWorkList" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Worklist</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Update Worklist</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- chat list  -->
@@ -125,6 +166,7 @@ include_once("cnav.php");
     </div>
 </div>
 
+<!-- service provider card -->
 <div class="container">
     <div class="row justify-content-evenly">
         <?php
@@ -159,10 +201,18 @@ include_once("cnav.php");
     </div>
 </div>
 
+
 <script>
     var sid2, snm2;
     var msgwin = document.getElementById('msg');
     var ldmsgintvrl;
+
+    function jbtnact() {
+        let l = document.getElementById('jobCat');
+        if (l.selectedIndex > 0) {
+            document.getElementById('jobBtn').disabled = false;
+        }
+    }
 
     function sendMsg() {
         var msgText = document.getElementById('msgval').value;
@@ -190,6 +240,30 @@ include_once("cnav.php");
             }
         };
         xhttp.open("GET", "getmsg.php?cid=<?php echo $_SESSION['id']; ?>&sid=" + sid + "&dirtn=cts", true);
+        xhttp.send();
+    }
+
+    function workList() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("wList").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "workList.php?id=<?php echo $_SESSION['id']; ?>", true);
+        xhttp.send();
+    }
+
+    setInterval(workList, 2000);
+
+    function deleteWorkList(jid) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+               ;
+            }
+        };
+        xhttp.open("GET", "deleteWorkList.php?jid="+jid, true);
         xhttp.send();
     }
 

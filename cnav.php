@@ -9,6 +9,9 @@
         <button type="button" class="btn btn-primary ms-3 my-2" data-bs-toggle="modal" data-bs-target="#crtJobs">
           + Work Details
         </button>
+        <button type="button" class="btn btn-primary ms-3 my-2" data-bs-toggle="modal" data-bs-target="#workList">
+          Work List
+        </button>
       </ul>
       <div class="d-flex">
         <div>
