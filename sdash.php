@@ -84,7 +84,7 @@ include_once("snav.php");
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Hi, <?php echo $_SESSION['name']; ?> </h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Welcome, <?php echo $_SESSION['name']; ?> </h5>
       </div>
       <form method="post">
         <div class="modal-body">
@@ -96,7 +96,6 @@ include_once("snav.php");
             <option value="Carpenter">Carpenter</option>
             <option value="Gardener">Gardener</option>
             <option value="Plumber">Plumber</option>
-            <option value="Electronic repair">Electronic repair</option>
             <option value="House cleaner">House cleaner</option>
           </select>
         </div>
