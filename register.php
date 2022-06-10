@@ -13,7 +13,7 @@
       $res  = $conn->query($chkqry);
 
       if(!$res->num_rows>0){
-        $qry = "insert into user(name,gender,email,dob,pwd,aadhaar,utype,address) values('$uname','$gender','$email','$dob','$pwd',$adn,'$utype','$address');";
+        $qry = "insert into user(name,gender,email,dob,pwd,aadhaar,utype,address,pincode) values('$uname','$gender','$email','$dob','$pwd',$adn,'$utype','$address',$pincode);";
 
         if ($conn->query($qry)) {
           echo "<div class='alert alert-success d-flex align-items-center' role='alert'>
@@ -75,13 +75,13 @@
       </div>
 
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" minlength="8" maxlength="16" class="form-control" id="exampleInputPassword1" name="pwd">
+        <label class="form-label">Password</label>
+        <input type="password" minlength="8" maxlength="16" class="form-control" name="pwd" required>
       </div>
 
       <div class="mb-3">
-        <label for="validationServer05" class="form-label">Aadhaar number</label>
-        <input type="number" class="form-control" id="validationServer05" name="adn"  required>
+        <label class="form-label">Aadhaar number</label>
+        <input type="number" class="form-control" name="adn"  required>
       </div>
 
       <div>
@@ -99,10 +99,13 @@
           </label>
         </div>
       </div>
-
       <div class="mb-3">
         <label class="form-label">Address</label>
         <textarea cols="6" rows="4" class="form-control" name="address" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Pincode</label>
+        <input type="number" class="form-control" name="pincode" required>
       </div>
 
       <div class="col-12">

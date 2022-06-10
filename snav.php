@@ -73,11 +73,11 @@
 
         <div class="mb-3">
           <label for="Name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="Name" value="<?php echo $_SESSION["name"]; ?>">
+          <input type="text" class="form-control" name="uname" id="Name" value="<?php echo $_SESSION["name"]; ?>">
         </div>
         <div class="mb-3">
           <label for="inputEmail" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="inputEmail" value="<?php echo $_SESSION["email"]; ?>" disabled aria-describedby="emailHelp">
+          <input type="email" class="form-control" name="email" id="inputEmail" value="<?php echo $_SESSION["email"]; ?>" disabled aria-describedby="emailHelp">
         </div>
         <div class="mb-3">
           <label for="inputEmail" class="form-label">Category</label>
@@ -85,12 +85,16 @@
         </div>
         <div class="mb-3">
           <label for="inputAddress" class="form-label">Address</label>
-          <textarea rows="4" class="form-control" id="inputAddress"><?php echo $_SESSION["address"]; ?></textarea>
+          <textarea rows="4" class="form-control" name="address" id="inputAddress"><?php echo $_SESSION["address"]; ?></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Pincode</label>
+          <input type="text" class="form-control" name="pincode" value="<?php echo $_SESSION['pincode']; ?>">
         </div>
          
 
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Update</button>
       </div>

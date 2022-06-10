@@ -11,7 +11,7 @@ include_once("cnav.php");
 
 ?>
 
-<!-- Create Jobs -->
+<!-- Create Work -->
 <div class="modal fade" id="crtJobs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <form class="modal-content" method="POST" action="crtJob.php">
@@ -22,7 +22,7 @@ include_once("cnav.php");
             <div class="modal-body">
                 <div class="mb-3">
                     <select class="form-select" aria-label="Default select example" name="jobCat">
-                        <option selected disabled>Select Job Category</option>
+                        <option selected disabled>Select Work Category</option>
                         <option value="Painter">Painter</option>
                         <option value="Electrician">Electrician</option>
                         <option value="Carpenter">Carpenter</option>
@@ -43,6 +43,10 @@ include_once("cnav.php");
                 <div class="mb-3">
                     <label for="address" class="form-label">Address</label>
                     <textarea class="form-control" id="address" rows="4" name="address"><?php echo $_SESSION['address']; ?></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Pincode</label>
+                    <input type="text" class="form-control" name="pincode" value="<?php echo $_SESSION['pincode']; ?>">
                 </div>
             </div>
             <div class="modal-footer">
