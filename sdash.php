@@ -109,40 +109,8 @@ include_once("snav.php");
 
 <!-- Work Details card -->
 <div class="container">
-  <div class="row justify-content-evenly">
-    <?php
-    include_once("db_conn.php");
-    $sid = $_SESSION['id'];
-    $ctqry = "select job_id,job.cid,name,pfpic,work_done,job.sid from user,job,service where job_cat=(select s_type where service.id=$sid) and job.cid=user.id;";
+  <div class="row justify-content-evenly" id="workCard">
 
-    $res = mysqli_query($conn, $ctqry);
-    while ($val2 = $res->fetch_assoc()) {
-      $cnm2 = $val2['name'];
-      $cid2 = $val2['cid'];
-      $pfpic = $val2['pfpic'];
-      $jid = $val2['job_id'];
-      $wdone = $val2['work_done'];
-      $sid2 = $val2['sid'];
-
-      $str2="";
-
-      if($wdone==0 && $sid2==0){
-        $str2=<<<ccard
-          <div class="card text-center border-3 rounded-3 m-2" style="width: 18rem;">
-          <img src="$pfpic" class="card-img-top rounded-circle w-50 h-50 mx-auto d-block mt-3 " alt="avatar">
-          <hr>
-          <div class="card-body">
-            <h5 class="card-title">$cnm2</h5>
-            <a href="#" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#viewDetails" onclick="vDetails($cid2,'$cnm2',$jid)" >View Details</a>
-          </div>
-          </div>
-        ccard;
-      }
-
-      echo $str2;
-    }
-
-    ?>
   </div>
 </div>
 
@@ -157,7 +125,7 @@ include_once("snav.php");
       </div>
       <div class="modal-body" id="vJobDetail">
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" id="vJobFooter">
         <button type="button" class="btn btn-success" data-bs-dismiss="modal" data-bs-toggle="offcanvas" data-bs-target="#clientChatBox" aria-controls="offcanvasRight" id="vBtn">Accept</button>
       </div>
     </div>
@@ -166,24 +134,24 @@ include_once("snav.php");
 
 <!-- Work List -->
 <div class="modal fade" id="workList" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Work List</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table">
-                    <tbody id="wList">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Work List</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <tbody id="wList">
 
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                
-            </div>
-        </div>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+
+      </div>
     </div>
+  </div>
 </div>
 
 <script>
@@ -227,21 +195,21 @@ include_once("snav.php");
     xhttp.send();
   }
 
-  function vDetails(cid,cnm,jid){
-    document.getElementById('vTitle').innerText=cnm;
+  function vDetails(cid, cnm, jid) {
+    document.getElementById('vTitle').innerText = cnm;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         document.getElementById("vJobDetail").innerHTML = this.responseText;
-        document.getElementById('vBtn').setAttribute('onclick','loadMsg('+cid+',\"'+cnm+'\"); acceptWork('+jid+');');
+        document.getElementById('vBtn').setAttribute('onclick', 'loadMsg(' + cid + ',\"' + cnm + '\"); acceptWork(' + jid + ');');
       }
     };
-    xhttp.open("GET", "getJobDetail.php?jid="+jid, true);
+    xhttp.open("GET", "getJobDetail.php?jid=" + jid, true);
     xhttp.send();
   }
 
-  function vDetails2(jid,cnm){
-    document.getElementById('vTitle').innerText=cnm;
+  function vDetails2(jid, cnm) {
+    document.getElementById('vTitle').innerText = cnm;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -249,36 +217,36 @@ include_once("snav.php");
         document.getElementById('vBtn').classList.add("visually-hidden");
       }
     };
-    xhttp.open("GET", "getJobDetail.php?jid="+jid, true);
+    xhttp.open("GET", "getJobDetail.php?jid=" + jid, true);
     xhttp.send();
   }
 
-  function acceptWork(jid){
+  function acceptWork(jid) {
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "acceptWork.php?sid=<?php echo $_SESSION['id']; ?>&jid="+jid, true);
+    xhttp.open("GET", "acceptWork.php?sid=<?php echo $_SESSION['id']; ?>&jid=" + jid, true);
     xhttp.send();
   }
 
   function sWorkList() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("wList").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", "sWorkList.php?id=<?php echo $_SESSION['id']; ?>", true);
-        xhttp.send();
-    }
-
-    setInterval(sWorkList, 2000);
-
-    function cancelWork(jid) {
-      if(confirm("Are you sure you want to cancel this work ?")){
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "cancelWork.php?jid="+jid, true);
-        xhttp.send();
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("wList").innerHTML = this.responseText;
       }
+    };
+    xhttp.open("GET", "sWorkList.php?id=<?php echo $_SESSION['id']; ?>", true);
+    xhttp.send();
+  }
+
+  setInterval(sWorkList, 2000);
+
+  function cancelWork(jid) {
+    if (confirm("Are you sure you want to cancel this work ?")) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "cancelWork.php?jid=" + jid, true);
+      xhttp.send();
     }
+  }
 
 
   function clmsgintvrl() {
@@ -300,6 +268,19 @@ include_once("snav.php");
     var image = document.getElementById('prfimg');
     image.src = URL.createObjectURL(event.target.files[0]);
   }
+
+  function getWorkCard(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("workCard").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "getWorkCard.php?id=<?php echo $_SESSION['id']; ?>", true);
+    xhttp.send();
+  }
+
+  setInterval(getWorkCard, 1000);
 
 
 </script>

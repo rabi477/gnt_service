@@ -47,7 +47,9 @@
     <div class="modal-content">
       <div class="modal-body">
         <form class="d-flex justify-content-between">
-          <input type="search" class="form-control" name="" id="">
+          <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+          <datalist id="datalistOptions">
+          </datalist>
           <button type="submit" class="btn btn-primary mx-2" data-bs-dismiss="modal">Search</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </form>
@@ -116,7 +118,7 @@
           <label class="form-label">Pincode</label>
           <input type="text" class="form-control" name="pincode" value="<?php echo $_SESSION['pincode']; ?>">
         </div>
-         
+
 
       </div>
       <div class="modal-footer justify-content-between">

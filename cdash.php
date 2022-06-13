@@ -111,7 +111,7 @@ include_once("cnav.php");
 
                     include_once("db_conn.php");
                     $cid = $_SESSION['id'];
-                    $qry = "select DISTINCT(user.id),name,pfpic from user,chat WHERE user.id=chat.sid and cid=$cid order by time desc;";
+                    $qry = "select DISTINCT(user.id),name,pfpic from user,chat WHERE user.id=chat.sid and cid=$cid order by time;";
 
                     $res = $conn->query($qry);
 
