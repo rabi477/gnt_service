@@ -11,6 +11,22 @@ include_once("cnav.php");
 
 ?>
 
+<!-- search -->
+<div class="container mb-5">
+    <div class="d-flex justify-content-between">
+        <select class="form-select" aria-label="Default select example" id="stype">
+            <option selected>Select Service Type (ALL)</option>
+            <option value="Painter">Painter</option>
+            <option value="Electrician">Electrician</option>
+            <option value="Carpenter">Carpenter</option>
+            <option value="Gardener">Gardener</option>
+            <option value="Plumber">Plumber</option>
+            <option value="House cleaner">House cleaner</option>
+        </select>
+        <button type="button" class="btn btn-primary mx-2" onclick="searchService()">Search</button>
+    </div>
+</div>
+
 <!-- Create Work -->
 <div class="modal fade" id="crtJobs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
@@ -21,7 +37,7 @@ include_once("cnav.php");
             </div>
             <div class="modal-body">
                 <div class="mb-3">
-                    <select class="form-select" aria-label="Default select example" id="jobCat" name="jobCat" onclick="jbtnact()" >
+                    <select class="form-select" aria-label="Default select example" id="jobCat" name="jobCat" onclick="jbtnact()">
                         <option selected disabled>Select Work Category</option>
                         <option value="Painter">Painter</option>
                         <option value="Electrician">Electrician</option>
@@ -73,7 +89,7 @@ include_once("cnav.php");
                 </table>
             </div>
             <div class="modal-footer">
-                
+
             </div>
         </div>
     </div>
@@ -81,20 +97,20 @@ include_once("cnav.php");
 
 <!-- Edit Worklist -->
 <div class="modal fade" id="editWorkList" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-fullscreen">
-    <form class="modal-content" action="updateWorkList.php" method="POST">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Worklist</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="loadWorkList">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
-      </div>
-    </form>
-  </div>
+    <div class="modal-dialog modal-fullscreen">
+        <form class="modal-content" action="updateWorkList.php" method="POST">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Worklist</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="loadWorkList">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <!-- chat list  -->
@@ -167,7 +183,7 @@ include_once("cnav.php");
 
 <!-- service provider card -->
 <div class="container">
-    <div class="row justify-content-evenly">
+    <div class="row justify-content-evenly" id="usCard">
         <?php
 
         include_once("db_conn.php");
@@ -183,7 +199,7 @@ include_once("cnav.php");
 
             $str = <<<idfr
             <div class='card text-center border-3 rounded-3 m-2' style='width: 18rem;'>
-            <img src='$pfpic' class='card-img-top w-50 h-50 rounded-circle mx-auto mt-3 d-block' alt='avatar'>
+            <img src='$pfpic' class='card-img-top w-50 h-50 mx-auto mt-3 d-block' alt='avatar' style="clip-path:circle(40%)">
             <hr>
             <div class='card-body'>
             <h5 class='card-title'>$snm</h5>
@@ -256,21 +272,21 @@ include_once("cnav.php");
     setInterval(workList, 2000);
 
     function deleteWorkList(jid) {
-        if(confirm("Are you sure you want to delete?")){
+        if (confirm("Are you sure you want to delete?")) {
             var xhttp = new XMLHttpRequest();
-            xhttp.open("GET", "deleteWorkList.php?jid="+jid, true);
+            xhttp.open("GET", "deleteWorkList.php?jid=" + jid, true);
             xhttp.send();
         }
     }
 
-    function editWorkList(jid){
+    function editWorkList(jid) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("loadWorkList").innerHTML = this.responseText;
-        }
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("loadWorkList").innerHTML = this.responseText;
+            }
         };
-        xhttp.open("GET", "getWorkList.php?jid="+jid, true);
+        xhttp.open("GET", "getWorkList.php?jid=" + jid, true);
         xhttp.send();
     }
 
@@ -292,6 +308,18 @@ include_once("cnav.php");
     function loagImg(event) {
         var image = document.getElementById('prfimg');
         image.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    function searchService() {
+        let stype = document.getElementById("stype").value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("usCard").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "csearchService.php?stype=" + stype, true);
+        xhttp.send();
     }
 </script>
 

@@ -35,6 +35,18 @@
             }
         }
     }
+
+    session_start();
+
+    if ($_SESSION["utype"] == "customer") {
+        header("location:cdash.php");
+    }
+
+    if ($_SESSION["utype"] == "service provider") {
+        header("location:sdash.php");
+    }
+
+
     ?>
 
     <?php include_once("header.php") ?>

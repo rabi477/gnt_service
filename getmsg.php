@@ -16,7 +16,7 @@ while($val = $res->fetch_assoc()){
 
     if($dirtn1 == $dirtn2){
         $str=<<<idfr
-        <div class="align-self-end bg-primary text-white px-2 mb-1 rounded-pill" >$msg</div>
+        <div class="align-self-end bg-primary text-white px-2 mb-1 rounded-pill me-1" >$msg</div>
         idfr;
     }
     else
