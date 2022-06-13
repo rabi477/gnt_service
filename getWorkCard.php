@@ -18,7 +18,7 @@
         if ($wdone == 0 && $sid2 == 0) {
           $str2 = <<<ccard
           <div class="card text-center border-3 rounded-3 m-2" style="width: 18rem;">
-          <img src="$pfpic" class="card-img-top w-50 h-50 mx-auto d-block mt-3 " alt="avatar"  style="clip-path:circle(40%)">
+          <img src="$pfpic" class="card-img-top w-50 h-50 mx-auto d-block mt-3" alt="avatar"  style="clip-path:circle(40%)">
           <hr>
           <div class="card-body">
             <h5 class="card-title">$cnm2</h5>
@@ -28,7 +28,7 @@
         ccard;
         }
 
-        echo $str2;
+        echo "$str2";
       }
 
 ?>

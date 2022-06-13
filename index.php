@@ -36,24 +36,15 @@
         }
     }
 
-    session_start();
-
-    if ($_SESSION["utype"] == "customer") {
-        header("location:cdash.php");
-    }
-
-    if ($_SESSION["utype"] == "service provider") {
-        header("location:sdash.php");
-    }
 
 
     ?>
 
-    <?php include_once("header.php") ?>
-    <?php include("navbar.php"); ?>
+    <?php include_once("header.php"); ?>
+    <?php include_once("navbar.php"); ?>
 
     <br><br>
-    <div class="container-md my-5 col-8 border border-5 rounded-3 pb-5 px-3">
+    <div class="container-md my-5 col-8 border border-5 rounded-3 pb-5 px-3 bg-light">
         <form method="post">
             <div class="mb-3">
 

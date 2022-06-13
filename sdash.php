@@ -11,10 +11,17 @@ include_once("snav.php");
 
 ?>
 
+<!-- buttons -->
+<div class="container text-center mb-5">
+  <button type="button" class="btn btn-primary btn-lg ms-3 my-2" data-bs-toggle="modal" data-bs-target="#workList">
+    Work List
+  </button>
+</div>
+
 <!-- chat list  -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
-    <h5>Client</h5>
+    <h5>Messages</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
@@ -110,7 +117,7 @@ include_once("snav.php");
 <!-- Work Details card -->
 <div class="container">
   <div class="row justify-content-evenly" id="workCard">
-
+    
   </div>
 </div>
 
@@ -248,28 +255,7 @@ include_once("snav.php");
     }
   }
 
-
-  function clmsgintvrl() {
-    clearInterval(ldmsgintvrl);
-  }
-
-  document.querySelector('#msgval').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      sendMsg();
-    }
-  });
-
-  document.querySelector('.cmbtn').addEventListener('click', () => {
-    ldmsgintvrl = setInterval(loadMsg, 1000, cid2, cnm2);
-  });
-
-
-  function loagImg(event) {
-    var image = document.getElementById('prfimg');
-    image.src = URL.createObjectURL(event.target.files[0]);
-  }
-
-  function getWorkCard(){
+  function getWorkCard() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -283,6 +269,27 @@ include_once("snav.php");
   setInterval(getWorkCard, 1000);
 
 
+  function clmsgintvrl() {
+    clearInterval(ldmsgintvrl);
+  }
+
+  document.querySelector('#msgval').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      sendMsg();
+    }
+  });
+
+
+  function loagImg(event) {
+    var image = document.getElementById('prfimg');
+    image.src = URL.createObjectURL(event.target.files[0]);
+  }
+
+  document.querySelector('.cmbtn').addEventListener('click', () => {
+    ldmsgintvrl = setInterval(loadMsg, 1000, cid2, cnm2);
+  });
+
+  
 </script>
 
 

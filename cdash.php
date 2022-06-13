@@ -11,6 +11,16 @@ include_once("cnav.php");
 
 ?>
 
+<!-- work buttons -->
+<div class="container text-center mb-5">
+    <button type="button" class="btn btn-primary btn-lg ms-3 my-2" data-bs-toggle="modal" data-bs-target="#crtJobs">
+        + Work Details
+    </button>
+    <button type="button" class="btn btn-primary btn-lg ms-3 my-2" data-bs-toggle="modal" data-bs-target="#workList">
+        Work List
+    </button>
+</div>
+
 <!-- search -->
 <div class="container mb-5">
     <div class="d-flex justify-content-between">
@@ -116,7 +126,7 @@ include_once("cnav.php");
 <!-- chat list  -->
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
-        <h5>Client</h5>
+        <h5>Messages</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -204,7 +214,7 @@ include_once("cnav.php");
             <div class='card-body'>
             <h5 class='card-title'>$snm</h5>
             <p class='card-text'>$stp</p>
-            <a href='#' class='btn btn-primary mx-auto cmbtn' data-bs-toggle='offcanvas' onclick='loadMsg($sid,"$snm")' data-bs-target='#cmsg' aria-controls='offcanvasRight' > Message </a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vService" onclick="vProfile($sid,'$snm')"> View Profile </button>
             </div>
             </div>
             idfr;
@@ -214,6 +224,25 @@ include_once("cnav.php");
 
         ?>
     </div>
+</div>
+
+<!-- View Service Provider Profile -->
+<div class="modal fade" id="vService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="vProf">
+        
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class='btn btn-primary cmbtn' data-bs-toggle='offcanvas' data-bs-target='#cmsg' aria-controls='offcanvasRight' data-bs-dismiss="modal" id="mBtn">Message</button>
+        <button type="button" class="btn btn-primary" id="bnBtn">Book Now</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -255,6 +284,19 @@ include_once("cnav.php");
             }
         };
         xhttp.open("GET", "getmsg.php?cid=<?php echo $_SESSION['id']; ?>&sid=" + sid + "&dirtn=cts", true);
+        xhttp.send();
+    }
+
+    function vProfile(sid,snm){
+        
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("vProf").innerHTML = this.responseText;
+                document.getElementById("mBtn").setAttribute("onclick","loadMsg("+sid+",\'"+snm+"\')");
+            }
+        };
+        xhttp.open("GET", "viewProfile.php?sid="+sid, true);
         xhttp.send();
     }
 
