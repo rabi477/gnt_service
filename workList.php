@@ -9,6 +9,13 @@
         $wdone = $val['work_done'];
         $sid = $val['sid'];
 
+        if($sid !=0 ){
+            $nqry = "select name from user where id=$sid;";
+            $nres = mysqli_query($conn,$nqry);
+            $nval = mysqli_fetch_assoc($nres);
+            $nm = $nval["name"];
+        }
+
         $str="";
 
         if($sid==0 && $wdone==0){
@@ -26,6 +33,7 @@
             <tr>
                 <td class="fw-bold">$tle</td>
                 <td class="d-flex justify-content-end">
+                <button type="button" class="btn btn-primary mx-2 cmbtn" data-bs-toggle="offcanvas" data-bs-target="#cmsg" aria-controls="offcanvasRight" data-bs-dismiss="modal" onclick="loadMsg($sid,'$nm')">Message</button>
                 <button class="btn btn-primary">Pay</button>
                 </td>
             </tr>

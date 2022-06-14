@@ -92,6 +92,14 @@
           <label class="form-label">Pincode</label>
           <input type="text" class="form-control" name="pincode" value="<?php echo $_SESSION['pincode']; ?>">
         </div>
+        <div class="mb-3">
+          <label class="form-label">Bank Account Number</label>
+          <input type="text" class="form-control" name="acc" value="<?php echo $_SESSION['acc']; ?>">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">IFSC Code</label>
+          <input type="text" class="form-control" name="ifsc" value="<?php echo $_SESSION['ifsc']; ?>">
+        </div>
          
 
       </div>

@@ -6,6 +6,7 @@
         <div><a href="#" class="link-secondary mx-1" target="_blank">Terms and Conditions</a></div>
         <div><a href="#" class="link-secondary mx-1" target="_blank">Privacy Policy</a></div>
         <div><a href="#" class="link-secondary mx-1" target="_blank">Help and Support</a></div>
+        <div><a href="#" class="link-secondary mx-1" target="_blank">About Us</a></div>
         <div><a href="#" class="link-secondary mx-1" target="_blank">Contact Us</a></div>
     </div>
 </div>

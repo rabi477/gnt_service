@@ -13,7 +13,7 @@ include_once("cnav.php");
 
 <!-- work buttons -->
 <div class="container text-center mb-5">
-    <button type="button" class="btn btn-primary btn-lg ms-3 my-2" data-bs-toggle="modal" data-bs-target="#crtJobs">
+    <button type="button" class="btn btn-primary btn-lg ms-3 my-2" data-bs-toggle="modal" data-bs-target="#crtJobs" onclick="crtJobFun()">
         + Work Details
     </button>
     <button type="button" class="btn btn-primary btn-lg ms-3 my-2" data-bs-toggle="modal" data-bs-target="#workList">
@@ -45,7 +45,7 @@ include_once("cnav.php");
                 <h5 class="modal-title" id="exampleModalLabel">Enter Work Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="cwBody">
                 <div class="mb-3">
                     <select class="form-select" aria-label="Default select example" id="jobCat" name="jobCat" onclick="jbtnact()">
                         <option selected disabled>Select Work Category</option>
@@ -214,7 +214,7 @@ include_once("cnav.php");
             <div class='card-body'>
             <h5 class='card-title'>$snm</h5>
             <p class='card-text'>$stp</p>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vService" onclick="vProfile($sid,'$snm')"> View Profile </button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vService" onclick="vProfile($sid,'$snm','$stp')"> View Profile </button>
             </div>
             </div>
             idfr;
@@ -239,7 +239,7 @@ include_once("cnav.php");
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class='btn btn-primary cmbtn' data-bs-toggle='offcanvas' data-bs-target='#cmsg' aria-controls='offcanvasRight' data-bs-dismiss="modal" id="mBtn">Message</button>
-        <button type="button" class="btn btn-primary" id="bnBtn">Book Now</button>
+        <button type="button" class="btn btn-primary" id="bnBtn" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#crtJobs">Book Now</button>
       </div>
     </div>
   </div>
@@ -287,17 +287,44 @@ include_once("cnav.php");
         xhttp.send();
     }
 
-    function vProfile(sid,snm){
+    function vProfile(sid,snm,stp){
         
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("vProf").innerHTML = this.responseText;
                 document.getElementById("mBtn").setAttribute("onclick","loadMsg("+sid+",\'"+snm+"\')");
+                document.getElementById("bnBtn").setAttribute("onclick","bookNow("+sid+",\'"+stp+"\')");
             }
         };
         xhttp.open("GET", "viewProfile.php?sid="+sid, true);
         xhttp.send();
+    }
+
+    function bookNow(sid,cat){
+        document.getElementById("jobCat").value=cat;
+        document.getElementById("jobCat").classList.add("visually-hidden");
+        let ctn = document.getElementById("cwBody");
+        if(document.getElementById("jobSid")){
+            document.getElementById("jobSid").remove();
+        }
+        let el = document.createElement("input");
+        el.setAttribute("value",sid);
+        el.setAttribute("id","jobSid");
+        el.classList.add("form-control");
+        el.classList.add("visually-hidden");
+        el.setAttribute("name","sid");
+        ctn.appendChild(el);
+        document.getElementById('jobBtn').disabled = false;
+    }
+
+    function crtJobFun(){
+        document.getElementById('jobBtn').disabled = true;
+        document.getElementById("jobCat").disabled = false;
+        document.getElementById('jobCat').selectedIndex = 0;
+        if(document.getElementById("jobSid")){
+            document.getElementById("jobSid").remove();
+        }
     }
 
     function workList() {

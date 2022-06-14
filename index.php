@@ -22,6 +22,7 @@
             $_SESSION["utype"] = $a["utype"];
             $_SESSION["id"] = $a["id"];
             $_SESSION["pfpic"] = $a["pfpic"];
+            $id = $a["id"];
 
             if (isset($rme)) {
                 setcookie("cred", $email . ":" . $pwd, time() + 86400, '/');
@@ -31,6 +32,13 @@
             if ($a["utype"] == "customer") {
                 header("location:cdash.php");
             } else if ($a["utype"] == "service provider") {
+                $aqry = "select bank_acc,ifsc_code from service where id=$id;";
+                $ares = mysqli_query($conn,$aqry);
+                $aval = mysqli_fetch_assoc($ares);
+
+                $_SESSION["acc"]=$aval["bank_acc"];
+                $_SESSION["ifsc"]=$aval["ifsc_code"];
+                
                 header("location:sdash.php");
             }
         }
@@ -129,6 +137,13 @@
                     if ($a["utype"] == "customer") {
                         header("location:cdash.php");
                     } else if ($a["utype"] == "service provider") {
+                        $aqry = "select bank_acc,ifsc_code from service where id=$id;";
+                        $ares = mysqli_query($conn,$aqry);
+                        $aval = mysqli_fetch_assoc($ares);
+        
+                        $_SESSION["acc"]=$aval["bank_acc"];
+                        $_SESSION["ifsc"]=$aval["ifsc_code"];
+                        
                         header("location:sdash.php");
                     }
                 } else {

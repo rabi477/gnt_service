@@ -9,7 +9,43 @@ if (!isset($_SESSION["utype"]) || $_SESSION["utype"] != "service provider") {
 include_once("header.php");
 include_once("snav.php");
 
+include_once("db_conn.php");
+
+$sid = $_SESSION["id"];
+
+$qry = "select bank_acc,ifsc_code from service where id=$sid;";
+
+$res = mysqli_query($conn,$qry);
+
+$val = mysqli_fetch_assoc($res);
+
+$acc = $val["bank_acc"];
+$ifsc = $val["ifsc_code"];
+
+if($acc == 0 or $ifsc == ""){
+  $str=<<<idfr
+  <div class="container-md py-3 border border-5 mb-5 rounded-3 bg-light">
+  <div class="text-center fs-3">Payment Detail</div>
+    <form method="POST" action="setPayment.php" >
+    <div class="mb-3">
+      <label  class="form-label">Bank Account Number</label>
+      <input type="number" name="acc" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label  class="form-label">Bank IFSC Code</label>
+      <input type="text" name="ifsc" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary d-block mx-auto">Submit</button>
+  </form>
+  </div>
+  idfr;
+
+  echo $str;
+}
+
 ?>
+
+
 
 <!-- buttons -->
 <div class="container text-center mb-5">

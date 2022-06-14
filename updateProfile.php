@@ -44,6 +44,20 @@ if (isset($pincode)) {
     }
 }
 
+if(isset($acc)){
+    $qry = "update service set bank_acc=$acc where id=$id;";
+    if (mysqli_query($conn, $qry)) {
+        $_SESSION['acc'] = $acc;
+    }
+}
+
+if(isset($ifsc)){
+    $qry = "update service set ifsc_code=$ifsc where id=$id;";
+    if (mysqli_query($conn, $qry)) {
+        $_SESSION['ifsc'] = $ifsc;
+    }
+}
+
 
 
 $str1 = explode("/", $_SERVER["HTTP_REFERER"]);
