@@ -3,11 +3,11 @@
         Copyright 2022 by GNT Service. All Rights Reserved.
     </div>
     <div class="d-flex justify-content-center px-3">
-        <div><a href="#" class="link-secondary mx-1" target="_blank">Terms and Conditions</a></div>
-        <div><a href="#" class="link-secondary mx-1" target="_blank">Privacy Policy</a></div>
-        <div><a href="#" class="link-secondary mx-1" target="_blank">Help and Support</a></div>
-        <div><a href="#" class="link-secondary mx-1" target="_blank">About Us</a></div>
-        <div><a href="#" class="link-secondary mx-1" target="_blank">Contact Us</a></div>
+        <div><a href="terms.php" class="link-secondary mx-1" target="_blank">Terms and Conditions</a></div>
+        <div><a href="privacy.php" class="link-secondary mx-1" target="_blank">Privacy Policy</a></div>
+        <div><a href="help.php" class="link-secondary mx-1" target="_blank">Help and Support</a></div>
+        <div><a href="aboutus.php" class="link-secondary mx-1" target="_blank">About Us</a></div>
+        <div><a href="contactus.php" class="link-secondary mx-1" target="_blank">Contact Us</a></div>
     </div>
 </div>
 
