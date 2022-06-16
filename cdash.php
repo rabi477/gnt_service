@@ -198,7 +198,9 @@ include_once("cnav.php");
 
         include_once("db_conn.php");
 
-        $spqry = "select service.id,name,s_type,pfpic from user,service where utype='service provider' and user.id=service.id limit 6;";
+        $id = $_SESSION["id"];
+
+        $spqry = "select service.id,name,s_type,pfpic from user,service where utype='service provider' and user.id=service.id and pincode=(select pincode from user where id=$id) limit 6;";
         $spres = $conn->query($spqry);
 
         while ($val = $spres->fetch_assoc()) {
@@ -387,7 +389,7 @@ include_once("cnav.php");
                 document.getElementById("usCard").innerHTML = this.responseText;
             }
         };
-        xhttp.open("GET", "csearchService.php?stype=" + stype, true);
+        xhttp.open("GET", "csearchService.php?stype=" + stype+"&id=<?php echo $_SESSION['id']; ?>", true);
         xhttp.send();
     }
 </script>

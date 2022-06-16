@@ -2,12 +2,13 @@
 
 include("db_conn.php");
 
+$cid = $_GET['id'];
 $stype = $_GET['stype'];
 
 if(in_array($stype,["Painter","Electrician","Carpenter","Gardener","Plumber","House cleaner"])){
-    $sqry = "select user.id,name,s_type,pfpic from user,service where user.id=service.id and utype='service provider' and s_type='$stype' limit 10;";
+    $sqry = "select user.id,name,s_type,pfpic from user,service where user.id=service.id and utype='service provider' and s_type='$stype' and pincode=(select pincode from user where id=$cid) limit 10;";
 }else{
-    $sqry = "select service.id,name,s_type,pfpic from user,service where utype='service provider' and user.id=service.id limit 6;";
+    $sqry = "select service.id,name,s_type,pfpic from user,service where utype='service provider' and user.id=service.id and pincode=(select pincode from user where id=$cid) limit 6;";
 }
 
 $spres = $conn->query($sqry);
