@@ -52,7 +52,7 @@ if(isset($acc)){
 }
 
 if(isset($ifsc)){
-    $qry = "update service set ifsc_code=$ifsc where id=$id;";
+    $qry = "update service set ifsc_code='$ifsc' where id=$id;";
     if (mysqli_query($conn, $qry)) {
         $_SESSION['ifsc'] = $ifsc;
     }
