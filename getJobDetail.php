@@ -13,6 +13,7 @@ $tle = $val['job_tle'];
 $desp = $val['job_desp'];
 $addr = $val['address'];
 $pin = $val['pincode'];
+$maddr = urlencode($addr);
 
 $str=<<<idfr
 <div>
@@ -31,6 +32,9 @@ $str=<<<idfr
     <div class="mb-3">
         <label class="form-label">Pincode</label>
         <input type="text" class="form-control" value="$pin" disabled>
+    </div>
+    <div class="mb-3">
+        <a href="https://maps.google.com/?q=$maddr" target="_blank" class="btn btn-primary d-block mx-auto w-50">View in Google Map</a>
     </div>
 </div>
 idfr;

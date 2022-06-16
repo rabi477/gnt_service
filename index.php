@@ -40,6 +40,8 @@
                 $_SESSION["ifsc"]=$aval["ifsc_code"];
                 
                 header("location:sdash.php");
+            }else if($a["utype"] == "admin"){
+                header("location:admin.php");
             }
         }
     }
@@ -145,6 +147,8 @@
                         $_SESSION["ifsc"]=$aval["ifsc_code"];
                         
                         header("location:sdash.php");
+                    }else if($a["utype"] == "admin"){
+                        header("location:admin.php");
                     }
                 } else {
                     echo "<p style='color:green'> <br>Verification Link Send to your email, please activate your account </p>";

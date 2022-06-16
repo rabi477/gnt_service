@@ -38,7 +38,7 @@ include_once("navbar.php");
 <?php
 
 if(isset($str)){
-  echo "<div class='text-center mt-3'>".$str,"</div";
+  echo "<div class='text-center mt-3'>",$str,"</div";
 }
 
 include_once("footer.php");

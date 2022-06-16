@@ -36,6 +36,9 @@ if($acc == 0 or $ifsc == ""){
       <input type="text" name="ifsc" class="form-control" required>
     </div>
     <button type="submit" class="btn btn-primary d-block mx-auto">Submit</button>
+    <div class="mb-3">
+      <div class="form-text">Note: Payment Details required to get payment from customers</div>
+    </div>
   </form>
   </div>
   idfr;
