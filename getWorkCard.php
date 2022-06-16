@@ -2,7 +2,7 @@
 
       include_once("db_conn.php");
       $sid = $_GET['id'];
-      $ctqry = "select job_id,job.cid,name,pfpic,work_done,job.sid from user,job,service where job_cat=(select s_type where service.id=$sid) and job.cid=user.id user.pincode=job.pincode;";
+      $ctqry = "select job_id,job.cid,name,pfpic,work_done,job.sid from user,job,service where job_cat=(select s_type where service.id=$sid) and job.pincode=(select pincode from user where id=$sid) and job.cid=user.id;";
 
       $res = mysqli_query($conn, $ctqry);
       while ($val2 = $res->fetch_assoc()) {
