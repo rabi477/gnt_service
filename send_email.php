@@ -18,7 +18,7 @@ function send_link($destination, $sendername, $message, $subject)
   curl_setopt($curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
   curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
   curl_setopt($curl, CURLOPT_POSTFIELDS, "{\r\n    \"key1\": \"value\",\r\n    \"key2\": \"value\"\r\n}");
-  curl_setopt($curl, CURLOPT_HTTPHEADER, ["content-type: application/json", "x-rapidapi-host: email-sender1.p.rapidapi.com", "x-rapidapi-key: ee023b4c72msh796a568c5d1ab69p199505jsn532b4173255a"]);
+  curl_setopt($curl, CURLOPT_HTTPHEADER, ["content-type: application/json", "x-rapidapi-host: email-sender1.p.rapidapi.com", "x-rapidapi-key: 8b95e73b49msh1656f206b1e3fcdp1658cfjsn08af5b5d4d26"]);
 
   curl_exec($curl);
   curl_close($curl);
